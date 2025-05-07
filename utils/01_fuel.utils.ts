@@ -1,24 +1,26 @@
 import { Page } from "@playwright/test";
+import { Logger } from "./logger";
 
 require('dotenv').config();
 
 export class FuelUtils {
     maxFuelPrice : number;
     maxCo2Price : number;
-
     page : Page;
+    private logger: Logger;
 
     constructor(page : Page) {
         this.maxFuelPrice = parseInt(process.env.MAX_FUEL_PRICE!);
         this.maxCo2Price = parseInt(process.env.MAX_CO2_PRICE!);
         this.page = page;
+        this.logger = Logger.getInstance();
 
-        console.log("Max Fuel Price: " + this.maxFuelPrice);
-        console.log("Max Co2 Price: " + this.maxCo2Price);
+        this.logger.info(`Max Fuel Price: ${this.maxFuelPrice}`);
+        this.logger.info(`Max Co2 Price: ${this.maxCo2Price}`);
     }
 
     public async buyFuel() {
-        console.log('Buying Fuel...')
+        this.logger.info('Buying Fuel...');
 
         const getCurrentFuelPrice = async () => {
             let fuelText = await this.page.getByText('Total price$').locator('b > span').innerText();
@@ -42,13 +44,14 @@ export class FuelUtils {
 
         const emptyFuel = await getEmptyFuel();
         if(emptyFuel === 0) {
+            this.logger.info('No empty tank capacity available');
             return;
         }
 
         const curFuelPrice = await getCurrentFuelPrice();
         const curHolding = await getCurrentHolding();
 
-        console.log('Current Fuel Price: ' + curFuelPrice);
+        this.logger.info(`Current Fuel Price: ${curFuelPrice}`);
 
         // Buy fuel if current price is lower than max price
         if(curFuelPrice < this.maxFuelPrice) {
@@ -57,9 +60,9 @@ export class FuelUtils {
             await this.page.getByPlaceholder('Amount to purchase').click();
             await this.page.getByPlaceholder('Amount to purchase').press('Control+a');
             await this.page.getByPlaceholder('Amount to purchase').fill(emptyFuelCapacity);
-            await this.page.getByRole('button', { name: ' Purchase' }).click();
+            await this.page.getByRole('button', { name: ' Purchase' }).click();
 
-            console.log('Bought Fuel Successfully! Amount of fuel bought: ' + emptyFuelCapacity + ' Litres');
+            this.logger.info(`Bought Fuel Successfully! Amount of fuel bought: ${emptyFuelCapacity} Litres`);
         }
         else if(curHolding < 2000000 && curFuelPrice < 1250) {
             const emptyFuelCapacity = (await this.page.locator('#remCapacity').innerText()).replaceAll(',', '');
@@ -67,9 +70,9 @@ export class FuelUtils {
             await this.page.getByPlaceholder('Amount to purchase').click();
             await this.page.getByPlaceholder('Amount to purchase').press('Control+a');
             await this.page.getByPlaceholder('Amount to purchase').fill('2000000');
-            await this.page.getByRole('button', { name: ' Purchase' }).click();
+            await this.page.getByRole('button', { name: ' Purchase' }).click();
 
-            console.log('Bought Fuel Successfully! Amount of fuel bought: 2000000 Litres');
+            this.logger.info('Bought Fuel Successfully! Amount of fuel bought: 2000000 Litres');
         } 
     }
 
@@ -96,13 +99,14 @@ export class FuelUtils {
 
         const emptyCo2 = await getEmptyCO2();
         if(emptyCo2 === 0) {
+            this.logger.info('No empty CO2 capacity available');
             return;
         }
 
         const curCo2Price = await getCurrentCo2Price();
         const curHolding = await getCurrentHolding();
 
-        console.log('Current Co2 Price: ' + curCo2Price);
+        this.logger.info(`Current Co2 Price: ${curCo2Price}`);
 
         // Buy co2 if current price is lower than max price
         if(curCo2Price < this.maxCo2Price) {
@@ -111,17 +115,17 @@ export class FuelUtils {
             await this.page.getByPlaceholder('Amount to purchase').click();
             await this.page.getByPlaceholder('Amount to purchase').press('Control+a');
             await this.page.getByPlaceholder('Amount to purchase').fill(emptyCo2Capacity);
-            await this.page.getByRole('button', { name: ' Purchase' }).click();
+            await this.page.getByRole('button', { name: ' Purchase' }).click();
 
-            console.log('Bought Co2 Successfully! Amount of co2 bought: ' + emptyCo2Capacity);
+            this.logger.info(`Bought Co2 Successfully! Amount of co2 bought: ${emptyCo2Capacity}`);
         }
         else if(curHolding < 1000000 && curCo2Price < 180) {
             await this.page.getByPlaceholder('Amount to purchase').click();
             await this.page.getByPlaceholder('Amount to purchase').press('Control+a');
             await this.page.getByPlaceholder('Amount to purchase').fill('1000000');
-            await this.page.getByRole('button', { name: ' Purchase' }).click();
+            await this.page.getByRole('button', { name: ' Purchase' }).click();
 
-            console.log('Bought Co2 Successfully! Amount of co2 bought: 1000000');
+            this.logger.info('Bought Co2 Successfully! Amount of co2 bought: 1000000');
         }
     }
 }

@@ -1,0 +1,185 @@
+[2025-05-07T12:21:54.059Z] [INFO] === Neue Sitzung gestartet: 2025-05-07T12-21-54.058Z ===
+[2025-05-07T12:21:54.059Z] [INFO] === Starte Airline Manager 4 Bot Operationen ===
+[2025-05-07T12:21:54.060Z] [INFO] Max Fuel Price: 550
+[2025-05-07T12:21:54.060Z] [INFO] Max Co2 Price: 120
+[2025-05-07T12:21:54.060Z] [INFO] Utility-Klassen initialisiert
+[2025-05-07T12:21:54.060Z] [INFO] Starte Login-Prozess...
+[2025-05-07T12:21:54.068Z] [INFO] Cookies geladen, navigiere zur Seite...
+[2025-05-07T12:21:59.610Z] [INFO] Bereits eingeloggt. Kein erneuter Login notwendig.
+[2025-05-07T12:21:59.610Z] [INFO] Starte Kraftstoff-Operationen...
+[2025-05-07T12:21:59.687Z] [INFO] Buying Fuel...
+[2025-05-07T12:21:59.799Z] [INFO] Keine leere Tankkapazität vorhanden
+[2025-05-07T12:22:00.861Z] [INFO] Current Co2 Price: 187
+[2025-05-07T12:22:00.903Z] [INFO] Kraftstoff-Operationen abgeschlossen
+[2025-05-07T12:22:00.903Z] [INFO] Starte Marketing-Kampagne-Operationen...
+[2025-05-07T12:22:00.947Z] [INFO] Kampagne wird erstellt...
+[INFO] === Neue Sitzung gestartet ===
+[INFO] === Starte Airline Manager 4 Bot Operationen ===
+[INFO] Max Fuel Price: 550
+[INFO] Max Co2 Price: 120
+[INFO] Utility-Klassen initialisiert
+[INFO] Starte Login-Prozess...
+[INFO] Cookies geladen, navigiere zur Seite...
+[INFO] Bereits eingeloggt. Kein erneuter Login notwendig.
+[INFO] Starte Kraftstoff-Operationen...
+[INFO] Buying Fuel...
+[INFO] Keine leere Tankkapazität vorhanden
+[INFO] Current Co2 Price: 187
+[INFO] Kraftstoff-Operationen abgeschlossen
+[INFO] Starte Marketing-Kampagne-Operationen...
+[INFO] Kampagne wird erstellt...
+[INFO] === New session started ===
+[INFO] === Starting Airline Manager 4 Bot Operations ===
+[INFO] --- Max Fuel Price: 550 ---
+[INFO] --- Max Co2 Price: 120 ---
+[INFO] --- Utility classes initialized ---
+[INFO] --- Starting login process... ---
+[INFO] --- Cookies loaded, navigating to page... ---
+[INFO] --- Already logged in. No need to login again. ---
+[INFO] --- Starting fuel operations... ---
+[INFO] --- Buying Fuel... ---
+[INFO] --- No empty tank capacity available ---
+[INFO] --- Current Co2 Price: 178 ---
+[INFO] --- Fuel operations completed ---
+[INFO] --- Starting marketing campaign operations... ---
+[INFO] --- Creating campaign... ---
+[INFO] === New session started ===
+[INFO] === Starting Airline Manager 4 Bot Operations ===
+[INFO] Max Fuel Price: 550
+[INFO] Max Co2 Price: 120
+[INFO] Utility classes initialized
+[INFO] --- Starting login process... ---
+[INFO] Cookies loaded, navigating to page...
+[INFO] Already logged in. No need to login again.
+[INFO] --- Starting fuel operations... ---
+[INFO] Buying Fuel...
+[INFO] No empty tank capacity available
+[INFO] Current Co2 Price: 106
+[INFO] Bought Co2 Successfully! Amount of co2 bought: 108856
+[INFO] Fuel operations completed
+[INFO] --- Starting marketing campaign operations... ---
+[INFO] Creating campaign...
+[INFO] === New session started ===
+[INFO] === Starting Airline Manager 4 Bot Operations ===
+[INFO] Max Fuel Price: 550
+[INFO] Max Co2 Price: 120
+[INFO] Utility classes initialized
+[INFO] --- Starting login process... ---
+[INFO] Cookies loaded, navigating to page...
+[INFO] Already logged in. No need to login again.
+[INFO] --- Starting fuel operations... ---
+[INFO] Buying Fuel...
+[INFO] No empty tank capacity available
+[INFO] No empty CO2 capacity available
+[INFO] Fuel operations completed
+[INFO] --- Starting marketing campaign operations... ---
+[INFO] Creating eco-friendly campaign...
+[INFO] === New session started ===
+[INFO] === Starting Airline Manager 4 Bot Operations ===
+[INFO] Max Fuel Price: 550
+[INFO] Max Co2 Price: 120
+[INFO] Utility classes initialized
+[INFO] --- Starting login process... ---
+[INFO] Cookies loaded, navigating to page...
+[INFO] Already logged in. No need to login again.
+[INFO] --- Starting fuel operations... ---
+[INFO] Buying Fuel...
+[INFO] Current Fuel Price: 2010
+[INFO] Current Co2 Price: 106
+[INFO] Bought Co2 Successfully! Amount of co2 bought: 22022
+[INFO] Fuel operations completed
+[INFO] --- Starting marketing campaign operations... ---
+[INFO] Checking active campaigns status...
+[INFO] No active campaigns found
+[INFO] Creating eco-friendly campaign...
+[INFO] === New session started ===
+[INFO] === Starting Airline Manager 4 Bot Operations ===
+[INFO] Max Fuel Price: 550
+[INFO] Max Co2 Price: 120
+[INFO] Utility classes initialized
+[INFO] --- Starting login process... ---
+[INFO] Cookies loaded, navigating to page...
+[INFO] Already logged in. No need to login again.
+[INFO] --- Starting fuel operations... ---
+[INFO] Buying Fuel...
+[INFO] Current Fuel Price: 2010
+[INFO] No empty CO2 capacity available
+[INFO] Fuel operations completed
+[INFO] --- Starting marketing campaign operations... ---
+[INFO] Checking active campaigns status...
+[INFO] No active campaigns found
+[INFO] Creating eco-friendly campaign...
+[INFO] === New session started ===
+[INFO] === Starting Airline Manager 4 Bot Operations ===
+[INFO] Max Fuel Price: 550
+[INFO] Max Co2 Price: 120
+[INFO] Utility classes initialized
+[INFO] --- Starting login process... ---
+[INFO] Cookies loaded, navigating to page...
+[INFO] Already logged in. No need to login again.
+[INFO] --- Starting fuel operations... ---
+[INFO] Buying Fuel...
+[INFO] Current Fuel Price: 2010
+[INFO] No empty CO2 capacity available
+[INFO] Fuel operations completed
+[INFO] --- Starting marketing campaign operations... ---
+[INFO] Checking active campaigns status...
+[INFO] No active campaigns found
+[INFO] Creating eco-friendly campaign...
+[INFO] === New session started ===
+[INFO] === Starting Airline Manager 4 Bot Operations ===
+[INFO] Max Fuel Price: 550
+[INFO] Max Co2 Price: 120
+[INFO] Utility classes initialized
+[INFO] --- Starting login process... ---
+[INFO] Cookies loaded, navigating to page...
+[INFO] Already logged in. No need to login again.
+[INFO] --- Starting fuel operations... ---
+[INFO] Buying Fuel...
+[INFO] Current Fuel Price: 1080
+[INFO] No empty CO2 capacity available
+[INFO] Fuel operations completed
+[INFO] --- Starting marketing campaign operations... ---
+[INFO] Checking active campaigns status...
+[INFO] No active campaigns found
+[INFO] Creating eco-friendly campaign...
+[INFO] === New session started ===
+[INFO] === Starting Airline Manager 4 Bot Operations ===
+[INFO] Max Fuel Price: 550
+[INFO] Max Co2 Price: 120
+[INFO] Utility classes initialized
+[INFO] --- Starting login process... ---
+[INFO] Cookies loaded, navigating to page...
+[INFO] Already logged in. No need to login again.
+[INFO] --- Starting fuel operations... ---
+[INFO] Buying Fuel...
+[INFO] Current Fuel Price: 1080
+[INFO] No empty CO2 capacity available
+[INFO] Fuel operations completed
+[INFO] --- Starting marketing campaign operations... ---
+[INFO] Checking active campaigns status...
+[ERROR] Error reading campaign times: Error: locator.innerText: Test timeout of 30000ms exceeded.
+Call log:
+  [2m- waiting for locator('text=Airline reputation').first().locator('..').locator('text=/\\d{2}:\\d{2}:\\d{2}/')[22m
+
+[INFO] Creating eco-friendly campaign...
+[INFO] === New session started ===
+[INFO] === Starting Airline Manager 4 Bot Operations ===
+[INFO] Max Fuel Price: 550
+[INFO] Max Co2 Price: 120
+[INFO] Utility classes initialized
+[INFO] --- Starting login process... ---
+[INFO] Cookies loaded, navigating to page...
+[INFO] Already logged in. No need to login again.
+[INFO] --- Starting fuel operations... ---
+[INFO] Buying Fuel...
+[INFO] Current Fuel Price: 1080
+[INFO] No empty CO2 capacity available
+[INFO] Fuel operations completed
+[INFO] --- Starting marketing campaign operations... ---
+[INFO] Checking active campaigns status...
+[ERROR] Error reading campaign times: Error: locator.innerText: Test timeout of 30000ms exceeded.
+Call log:
+  [2m- waiting for locator('text=Airline reputation').first().locator('..').locator('text=/\\d{2}:\\d{2}:\\d{2}/')[22m
+
+[INFO] Creating eco-friendly campaign...
