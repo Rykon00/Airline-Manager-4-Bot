@@ -1,81 +1,191 @@
-import { Page } from "@playwright/test";
-import { GeneralUtils } from "./00_general.utils";
-import { Logger } from "./logger";
+import { Page } from '@playwright/test';
+import { Logger } from './logger';
+import { GeneralUtils } from './00_general.utils';
 
 export class CampaignUtils {
-    page : Page;
-    private logger: Logger;
+  private page: Page;
+  private logger: Logger;
 
-    constructor(page : Page) {
-        this.page = page;
-        this.logger = Logger.getInstance();
+  constructor(page: Page) {
+    this.page = page;
+    this.logger = Logger.getInstance();
+  }
+
+  /**
+   * Checks active campaigns and logs their remaining time
+   * @returns true if an active eco-friendly campaign exists, false otherwise
+   */
+  async checkActiveCampaigns(): Promise<boolean> {
+    this.logger.info('Checking active marketing campaigns...');
+    let hasActiveEcoFriendlyCampaign = false;
+
+    try {
+      // Navigate to Marketing tab first using the same approach as in createCampaign
+      this.logger.info('Navigating to MARKETING tab...');
+      await this.navigateToMarketingTab();
+      
+      // Look for active campaigns
+      const activeCampaignRows = this.page.locator('table.table tbody tr');
+      const count = await activeCampaignRows.count();
+      
+      if (count === 0) {
+        this.logger.info('No active marketing campaigns found.');
+        return false;
+      }
+
+      this.logger.info(`Found ${count} active marketing campaign(s):`);
+      
+      // Process each active campaign
+      let validCampaignsFound = false;
+      for (let i = 0; i < count; i++) {
+        const row = activeCampaignRows.nth(i);
+        
+        // Extract campaign type, status and time remaining
+        const campaignType = await row.locator('td').nth(0).innerText();
+        const remainingTime = await row.locator('td').nth(1).innerText();
+        
+        // Only log campaigns that have valid time formats (like XX:XX:XX)
+        const isValidTimeFormat = /\d{2}:\d{2}:\d{2}/.test(remainingTime);
+        
+        if (isValidTimeFormat) {
+          // Log the campaign details without the "Campaign X:" prefix
+          this.logger.info(`${campaignType} - Remaining: ${remainingTime}`);
+          validCampaignsFound = true;
+        }
+        
+        // Check if it's an eco-friendly campaign (using case-insensitive check)
+        if (campaignType.toLowerCase().includes('eco') && 
+            campaignType.toLowerCase().includes('friendly')) {
+          hasActiveEcoFriendlyCampaign = true;
+          this.logger.info('Active eco-friendly campaign detected.');
+        }
+      }
+      
+      if (!validCampaignsFound) {
+        this.logger.info('No campaigns with valid time format found.');
+      }
+      
+      return hasActiveEcoFriendlyCampaign;
+    } catch (error) {
+      this.logger.error(`Error checking active campaigns: ${error}`);
+      return false; // Assume no active eco-friendly campaign in case of error
     }
+  }
 
-    /**
-     * Reads the remaining time of active campaigns and logs them to console
-     */
-    private async readRemainingCampaignTimes(): Promise<boolean> {
-        // First we need to click on the Marketing tab to see active campaigns
-        await this.page.getByRole('button', { name: ' Marketing' }).click();
-        await GeneralUtils.sleep(500);
+  /**
+   * Helper method to navigate to MARKETING tab
+   */
+  private async navigateToMarketingTab(): Promise<void> {
+    try {
+      // First try by tab role with name
+      const marketingTab = this.page.getByRole('tab', { name: 'MARKETING', exact: true });
+      if (await marketingTab.isVisible({ timeout: 5000 })) {
+        this.logger.info('Found MARKETING tab by role');
+        await marketingTab.click();
+      } else {
+        // Try using a more specific selector - look for nav or tab links
+        const marketingTabAlt = this.page.locator('ul.nav-tabs a', { hasText: 'MARKETING' });
+        if (await marketingTabAlt.isVisible({ timeout: 5000 })) {
+          this.logger.info('Found MARKETING tab by nav-tabs selector');
+          await marketingTabAlt.click();
+        } else {
+          // Last resort - try to find any clickable element containing the text
+          this.logger.info('Trying to find MARKETING tab by generic text content');
+          await this.page.locator('a, button', { hasText: /MARKETING/i }).first().click();
+        }
+      }
+    } catch (err) {
+      this.logger.warn(`Failed to click MARKETING tab with standard selectors: ${err}`);
+      // Try a last resort selector - looking for any element with MARKETING text
+      await this.page.locator('text=MARKETING').click();
+    }
+    
+    await GeneralUtils.sleep(2000);
+  }
+
+  /**
+   * Creates a marketing campaign with focus on eco-friendly options
+   * First checks for active campaigns and only creates a new one if needed
+   */
+  async createCampaign(): Promise<void> {
+    this.logger.info('Starting marketing campaign operations...');
+
+    try {
+      // First check if there are any active eco-friendly campaigns
+      const hasActiveEcoFriendly = await this.checkActiveCampaigns();
+      
+      if (hasActiveEcoFriendly) {
+        this.logger.info('Eco-friendly campaign already active. No need to create a new one.');
+        return;
+      }
+      
+      this.logger.info('No active eco-friendly campaign found. Creating new campaign...');
+      
+      // Look for New campaign link
+      try {
+        this.logger.info('Looking for New campaign link...');
+        // Try different approaches to find the New campaign link
+        let newCampaignLinkFound = false;
         
-        // Check if there are any active campaigns by looking for campaign items
-        const airlineReputationElement = await this.page.locator('text=Airline reputation').first();
-        const ecoFriendlyElement = await this.page.locator('text=Eco friendly').first();
-        
-        let hasActiveCampaigns = false;
-        
+        // First approach
         try {
-            // Get campaign remaining times
-            if (await airlineReputationElement.isVisible()) {
-                hasActiveCampaigns = true;
-                const airlineRepTime = await this.page.locator('text=Airline reputation').first().locator('xpath=..').locator('text=/\\d{2}:\\d{2}:\\d{2}/').innerText();
-                this.logger.info(`Active airline reputation campaign: ${airlineRepTime} remaining`);
-            }
-            
-            if (await ecoFriendlyElement.isVisible()) {
-                hasActiveCampaigns = true;
-                const ecoFriendlyTime = await this.page.locator('text=Eco friendly').first().locator('xpath=..').locator('text=/\\d{2}:\\d{2}:\\d{2}/').innerText();
-                this.logger.info(`Active eco-friendly campaign: ${ecoFriendlyTime} remaining`);
-            }
-            
-            if (hasActiveCampaigns) {
-                this.logger.info('Found active campaigns with remaining time');
-            } else {
-                this.logger.info('No active campaigns found');
-            }
-        } catch (error) {
-            this.logger.error(`Error reading campaign times: ${error}`);
-            return false;
+          const newCampaignLink = this.page.getByRole('link', { name: 'New campaign' });
+          if (await newCampaignLink.isVisible({ timeout: 5000 })) {
+            await newCampaignLink.click();
+            newCampaignLinkFound = true;
+          }
+        } catch (err) {
+          this.logger.warn(`Could not find New campaign link by role: ${err}`);
         }
         
-        return hasActiveCampaigns;
-    }
-
-    public async createCampaign() {
-        this.logger.info('Checking active campaigns status...');
-        
-        // First read remaining campaign times
-        const hasActiveCampaigns = await this.readRemainingCampaignTimes();
-        
-        // If campaigns exist, we don't need to create a new one
-        if (hasActiveCampaigns) {
-            this.logger.info('Active campaigns found, not creating a new one');
-            return;
+        // Second approach if first failed
+        if (!newCampaignLinkFound) {
+          try {
+            const altLink = this.page.locator('a:has-text("New campaign")').first();
+            if (await altLink.isVisible({ timeout: 5000 })) {
+              await altLink.click();
+              newCampaignLinkFound = true;
+            }
+          } catch (err) {
+            this.logger.warn(`Could not find New campaign link by text selector: ${err}`);
+          }
         }
         
-        this.logger.info('Creating eco-friendly campaign...');
+        // Third approach if previous failed
+        if (!newCampaignLinkFound) {
+          // Look for any button or link that might be used to create a new campaign
+          const anyNewButton = this.page.locator('a:has-text("New"), button:has-text("New")').first();
+          if (await anyNewButton.isVisible({ timeout: 5000 })) {
+            await anyNewButton.click();
+            newCampaignLinkFound = true;
+          } else {
+            throw new Error('Could not find any New campaign link or button');
+          }
+        }
         
-        // At this point, we're already on the Marketing tab, so we don't need to navigate there again
-        await this.page.getByRole('button', { name: ' Create a new marketing campaign' }).click();
-        await this.page.getByRole('button', { name: 'Eco-friendly campaign' }).click();
+        await GeneralUtils.sleep(2000);
         
-        // Wait for the page to load
-        await GeneralUtils.sleep(500);
-        
-        // Click create campaign button
-        await this.page.getByRole('button', { name: 'Create campaign' }).click();
+        // Select eco-friendly campaign
+        this.logger.info('Selecting Eco-friendly campaign option...');
+        await this.page.getByText('Eco-friendly').click();
+        await GeneralUtils.sleep(1000);
 
-        this.logger.info('Eco-friendly campaign successfully created');
+        // Click on create button
+        this.logger.info('Creating campaign...');
+        await this.page.getByRole('button', { name: 'Create' }).click();
+        await GeneralUtils.sleep(1000);
+
+        this.logger.info('Marketing campaign created successfully');
+        
+        // Check active campaigns again to verify and log the new campaign
+        await this.checkActiveCampaigns();
+      } catch (err) {
+        this.logger.error(`Error creating new campaign: ${err}`);
+        throw err;
+      }
+    } catch (error) {
+      this.logger.error(`Error in campaign operations: ${error}`);
+      throw error;
     }
+  }
 }

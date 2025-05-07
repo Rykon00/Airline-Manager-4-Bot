@@ -183,3 +183,1467 @@ Call log:
   [2m- waiting for locator('text=Airline reputation').first().locator('..').locator('text=/\\d{2}:\\d{2}:\\d{2}/')[22m
 
 [INFO] Creating eco-friendly campaign...
+[INFO] === New session started ===
+[INFO] === Starting Airline Manager 4 Bot Operations ===
+[INFO] Max Fuel Price: 550
+[INFO] Max Co2 Price: 120
+[INFO] Utility classes initialized
+[INFO] --- Starting login process... ---
+[INFO] Not logged in, starting login process...
+[INFO] Cookies saved successfully
+[INFO] Successfully logged in!
+[INFO] --- Starting fuel operations... ---
+[INFO] Buying Fuel...
+[INFO] Current Fuel Price: 690
+[INFO] No empty CO2 capacity available
+[INFO] Fuel operations completed
+[INFO] --- Starting marketing campaign operations... ---
+[INFO] Checking active campaigns status...
+[ERROR] Error reading campaign times: Error: locator.innerText: Test ended.
+Call log:
+  [2m- waiting for locator('text=Airline reputation').first().locator('..').locator('text=/\\d{2}:\\d{2}:\\d{2}/')[22m
+
+[INFO] Creating eco-friendly campaign...
+[INFO] === New session started ===
+[INFO] === Starting Airline Manager 4 Bot Operations ===
+[INFO] Max Fuel Price: 550
+[INFO] Max Co2 Price: 120
+[INFO] Utility classes initialized
+[INFO] --- Starting login process... ---
+[INFO] Cookies loaded, navigating to page...
+[INFO] Already logged in. No need to login again.
+[INFO] --- Starting fuel operations... ---
+[INFO] Buying Fuel...
+[INFO] Current Fuel Price: 690
+[INFO] No empty CO2 capacity available
+[INFO] Fuel operations completed
+[INFO] --- Starting marketing campaign operations... ---
+[INFO] Checking active campaigns status...
+[ERROR] Error reading campaign times: Error: locator.innerText: Test timeout of 30000ms exceeded.
+Call log:
+  [2m- waiting for locator('text=Airline reputation').first().locator('..').locator('text=/\\d{2}:\\d{2}:\\d{2}/')[22m
+
+[INFO] Creating eco-friendly campaign...
+[INFO] === New session started ===
+[INFO] === Starting Airline Manager 4 Bot Operations ===
+[INFO] Max Fuel Price: 550
+[INFO] Max Co2 Price: 120
+[INFO] Utility classes initialized
+[INFO] --- Starting login process... ---
+[INFO] Cookies loaded, navigating to page...
+[INFO] Already logged in. No need to login again.
+[INFO] --- Starting fuel operations... ---
+[INFO] Buying Fuel...
+[INFO] Current Fuel Price: 690
+[INFO] Current Co2 Price: 176
+[INFO] Fuel operations completed
+[INFO] --- Starting marketing campaign operations... ---
+[INFO] Creating marketing campaign...
+[ERROR] Error creating campaign: Error: locator.click: Test timeout of 30000ms exceeded.
+Call log:
+  [2m- waiting for getByRole('link', { name: 'New campaign' })[22m
+
+[INFO] === New session started ===
+[INFO] === Starting Airline Manager 4 Bot Operations ===
+[INFO] Max Fuel Price: 550
+[INFO] Max Co2 Price: 120
+[INFO] Utility classes initialized
+[INFO] --- Starting login process... ---
+[INFO] Cookies loaded, navigating to page...
+[INFO] Already logged in. No need to login again.
+[INFO] --- Starting fuel operations... ---
+[INFO] Buying Fuel...
+[INFO] Current Fuel Price: 690
+[INFO] Current Co2 Price: 176
+[INFO] Fuel operations completed
+[INFO] --- Starting marketing campaign operations... ---
+[INFO] Creating marketing campaign...
+[ERROR] Error creating campaign: Error: locator.click: Test timeout of 30000ms exceeded.
+Call log:
+  [2m- waiting for getByRole('link', { name: 'New campaign' })[22m
+
+[INFO] === New session started ===
+[INFO] === Starting Airline Manager 4 Bot Operations ===
+[INFO] Max Fuel Price: 550
+[INFO] Max Co2 Price: 120
+[INFO] Utility classes initialized
+[INFO] --- Starting login process... ---
+[INFO] Cookies loaded, navigating to page...
+[INFO] Already logged in. No need to login again.
+[INFO] --- Starting fuel operations... ---
+[INFO] Buying Fuel...
+[INFO] Current Fuel Price: 690
+[INFO] Current Co2 Price: 176
+[INFO] Fuel operations completed
+[INFO] --- Starting marketing campaign operations... ---
+[INFO] Creating marketing campaign...
+[ERROR] Error creating campaign: Error: locator.click: Test timeout of 30000ms exceeded.
+Call log:
+  [2m- waiting for getByRole('link', { name: 'New campaign' })[22m
+
+[INFO] === New session started ===
+[INFO] === Starting Airline Manager 4 Bot Operations ===
+[INFO] Max Fuel Price: 550
+[INFO] Max Co2 Price: 120
+[INFO] Utility classes initialized
+[INFO] --- Starting login process... ---
+[INFO] Cookies loaded, navigating to page...
+[INFO] Already logged in. No need to login again.
+[INFO] --- Starting fuel operations... ---
+[INFO] Buying Fuel...
+[INFO] Current Fuel Price: 690
+[INFO] Current Co2 Price: 176
+[INFO] Fuel operations completed
+[INFO] --- Starting marketing campaign operations... ---
+[INFO] Creating marketing campaign...
+[ERROR] Error creating campaign: Error: locator.click: Test timeout of 30000ms exceeded.
+Call log:
+  [2m- waiting for locator('a:has-text("MARKETING")')[22m
+
+[INFO] === New session started ===
+[INFO] === Starting Airline Manager 4 Bot Operations ===
+[INFO] Max Fuel Price: 550
+[INFO] Max Co2 Price: 120
+[INFO] Utility classes initialized
+[INFO] --- Starting login process... ---
+[INFO] Cookies loaded, navigating to page...
+[INFO] Already logged in. No need to login again.
+[INFO] --- Starting fuel operations... ---
+[INFO] Buying Fuel...
+[INFO] Current Fuel Price: 690
+[INFO] Current Co2 Price: 176
+[INFO] Fuel operations completed
+[INFO] --- Starting marketing campaign operations... ---
+[INFO] Creating marketing campaign...
+[INFO] Attempting to navigate to MARKETING tab...
+[INFO] Trying to find MARKETING tab by generic text content
+[INFO] Looking for New campaign link...
+[ERROR] Error creating campaign: TimeoutError: locator.click: Timeout 10000ms exceeded.
+Call log:
+  [2m- waiting for getByRole('link', { name: 'New campaign' })[22m
+
+[INFO] === New session started ===
+[INFO] === Starting Airline Manager 4 Bot Operations ===
+[INFO] Max Fuel Price: 550
+[INFO] Max Co2 Price: 120
+[INFO] Utility classes initialized
+[INFO] --- Starting login process... ---
+[INFO] Cookies loaded, navigating to page...
+[INFO] Already logged in. No need to login again.
+[INFO] --- Starting fuel operations... ---
+[INFO] Buying Fuel...
+[INFO] Current Fuel Price: 690
+[INFO] Current Co2 Price: 176
+[INFO] Fuel operations completed
+[INFO] --- Starting marketing campaign operations... ---
+[INFO] Starting marketing campaign operations...
+[INFO] Checking active marketing campaigns...
+[INFO] Navigating to MARKETING tab...
+[INFO] Trying to find MARKETING tab by generic text content
+[INFO] Found 5 active marketing campaign(s):
+[INFO] Campaign 1:  - Remaining: Increase airline reputationCampaigns help to increase airline reputation
+[INFO] Campaign 2:  - Remaining: Eco-friendlyIncreases reputation if you are eco-friendly
+[INFO] Campaign 3:  Airline reputation - Remaining: 00:26:39
+[INFO] Campaign 4:  Eco friendly - Remaining: 08:30:29
+[INFO] Campaign 5:  - Remaining: 
+[INFO] No active eco-friendly campaign found. Creating new campaign...
+[INFO] Looking for New campaign link...
+[INFO] Selecting Eco-friendly campaign option...
+[ERROR] Error creating new campaign: Error: locator.click: Test timeout of 30000ms exceeded.
+Call log:
+  [2m- waiting for getByText('Eco-friendly')[22m
+[2m  -   locator resolved to <span class="s-text">Increases reputation if you are eco-friendly</span>[22m
+[2m  - attempting click action[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #1[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #2[22m
+[2m  -   waiting 20ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #3[22m
+[2m  -   waiting 100ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #4[22m
+[2m  -   waiting 100ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #5[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #6[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #7[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #8[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #9[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #10[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #11[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #12[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #13[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #14[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #15[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #16[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #17[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #18[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #19[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #20[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #21[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #22[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #23[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #24[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #25[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #26[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #27[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #28[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #29[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #30[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #31[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #32[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #33[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #34[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #35[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #36[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #37[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #38[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #39[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #40[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #41[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #42[22m
+[2m  -   waiting 500ms[22m
+
+[ERROR] Error in campaign operations: Error: locator.click: Test timeout of 30000ms exceeded.
+Call log:
+  [2m- waiting for getByText('Eco-friendly')[22m
+[2m  -   locator resolved to <span class="s-text">Increases reputation if you are eco-friendly</span>[22m
+[2m  - attempting click action[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #1[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #2[22m
+[2m  -   waiting 20ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #3[22m
+[2m  -   waiting 100ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #4[22m
+[2m  -   waiting 100ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #5[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #6[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #7[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #8[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #9[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #10[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #11[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #12[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #13[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #14[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #15[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #16[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #17[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #18[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #19[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #20[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #21[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #22[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #23[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #24[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #25[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #26[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #27[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #28[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #29[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #30[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #31[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #32[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #33[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #34[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #35[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #36[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #37[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #38[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #39[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #40[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #41[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #42[22m
+[2m  -   waiting 500ms[22m
+
+[INFO] === New session started ===
+[INFO] === Starting Airline Manager 4 Bot Operations ===
+[INFO] Max Fuel Price: 550
+[INFO] Max Co2 Price: 120
+[INFO] Utility classes initialized
+[INFO] --- Starting login process... ---
+[INFO] Cookies loaded, navigating to page...
+[INFO] Already logged in. No need to login again.
+[INFO] --- Starting fuel operations... ---
+[INFO] Buying Fuel...
+[INFO] Current Fuel Price: 1630
+[INFO] Current Co2 Price: 159
+[INFO] Fuel operations completed
+[INFO] --- Starting marketing campaign operations... ---
+[INFO] Starting marketing campaign operations...
+[INFO] Checking active marketing campaigns...
+[INFO] Navigating to MARKETING tab...
+[INFO] Trying to find MARKETING tab by generic text content
+[INFO] Found 5 active marketing campaign(s):
+[INFO] Campaign 1:  - Remaining: Increase airline reputationCampaigns help to increase airline reputation
+[INFO] Campaign 2:  - Remaining: Eco-friendlyIncreases reputation if you are eco-friendly
+[INFO] Campaign 3:  Airline reputation - Remaining: 00:25:25
+[INFO] Campaign 4:  Eco friendly - Remaining: 08:29:15
+[INFO] Campaign 5:  - Remaining: 
+[INFO] No active eco-friendly campaign found. Creating new campaign...
+[INFO] Looking for New campaign link...
+[INFO] Selecting Eco-friendly campaign option...
+[ERROR] Error creating new campaign: Error: locator.click: Test timeout of 30000ms exceeded.
+Call log:
+  [2m- waiting for getByText('Eco-friendly')[22m
+[2m  -   locator resolved to <span class="s-text">Increases reputation if you are eco-friendly</span>[22m
+[2m  - attempting click action[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #1[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #2[22m
+[2m  -   waiting 20ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #3[22m
+[2m  -   waiting 100ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #4[22m
+[2m  -   waiting 100ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #5[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #6[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #7[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #8[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #9[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #10[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #11[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #12[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #13[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #14[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #15[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #16[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #17[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #18[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #19[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #20[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #21[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #22[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #23[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #24[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #25[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #26[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #27[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #28[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #29[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #30[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #31[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #32[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #33[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #34[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #35[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #36[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #37[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #38[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #39[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #40[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #41[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #42[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #43[22m
+[2m  -   waiting 500ms[22m
+
+[ERROR] Error in campaign operations: Error: locator.click: Test timeout of 30000ms exceeded.
+Call log:
+  [2m- waiting for getByText('Eco-friendly')[22m
+[2m  -   locator resolved to <span class="s-text">Increases reputation if you are eco-friendly</span>[22m
+[2m  - attempting click action[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #1[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #2[22m
+[2m  -   waiting 20ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #3[22m
+[2m  -   waiting 100ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #4[22m
+[2m  -   waiting 100ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #5[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #6[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #7[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #8[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #9[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #10[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #11[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #12[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #13[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #14[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #15[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #16[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #17[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #18[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #19[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #20[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #21[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #22[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #23[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #24[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #25[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #26[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #27[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #28[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #29[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #30[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #31[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #32[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #33[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #34[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #35[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #36[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #37[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #38[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #39[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #40[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #41[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #42[22m
+[2m  -   waiting 500ms[22m
+[2m  -   waiting for element to be visible, enabled and stable[22m
+[2m  -   element is visible, enabled and stable[22m
+[2m  -   scrolling into view if needed[22m
+[2m  -   done scrolling[22m
+[2m  -   <table class="table table-sm table-hover m-text">…</table> intercepts pointer events[22m
+[2m  - retrying click action, attempt #43[22m
+[2m  -   waiting 500ms[22m
+
+[INFO] === New session started ===
+[INFO] === Starting Airline Manager 4 Bot Operations ===
+[INFO] Max Fuel Price: 550
+[INFO] Max Co2 Price: 120
+[INFO] Utility classes initialized
+[INFO] --- Starting login process... ---
+[INFO] Cookies loaded, navigating to page...
+[INFO] Already logged in. No need to login again.
+[INFO] --- Starting fuel operations... ---
+[INFO] Buying Fuel...
+[INFO] Current Fuel Price: 1630
+[INFO] Current Co2 Price: 159
+[INFO] Fuel operations completed
+[INFO] --- Starting marketing campaign operations... ---
+[INFO] Starting marketing campaign operations...
+[INFO] Checking active marketing campaigns...
+[INFO] Navigating to MARKETING tab...
+[INFO] Trying to find MARKETING tab by generic text content
+[INFO] Found 5 active marketing campaign(s):
+[INFO]  Airline reputation - Remaining: 00:21:26
+[INFO]  Eco friendly - Remaining: 08:25:16
+[INFO] Active eco-friendly campaign detected.
+[INFO] Eco-friendly campaign already active. No need to create a new one.
+[INFO] Marketing campaign operations completed
+[INFO] --- Starting aircraft maintenance operations... ---
+[INFO] No aircraft need inspection
+[INFO] === New session started ===
+[INFO] === Starting Airline Manager 4 Bot Operations ===
+[INFO] Max Fuel Price: 550
+[INFO] Max Co2 Price: 120
+[INFO] Utility classes initialized
+[INFO] --- Starting login process... ---
+[INFO] Cookies loaded, navigating to page...
+[INFO] Already logged in. No need to login again.
+[INFO] --- Starting fuel operations... ---
+[INFO] Buying Fuel...
+[INFO] Current Fuel Price: 1630
+[INFO] Current Co2 Price: 159
+[INFO] Fuel operations completed
+[INFO] --- Starting marketing campaign operations... ---
+[INFO] Starting marketing campaign operations...
+[INFO] Checking active marketing campaigns...
+[INFO] Navigating to MARKETING tab...
+[INFO] Trying to find MARKETING tab by generic text content
+[INFO] Found 5 active marketing campaign(s):
+[INFO]  Airline reputation - Remaining: 00:18:36
+[INFO]  Eco friendly - Remaining: 08:22:26
+[INFO] Active eco-friendly campaign detected.
+[INFO] Eco-friendly campaign already active. No need to create a new one.
+[INFO] Marketing campaign operations completed
+[INFO] --- Starting aircraft maintenance operations... ---
+[INFO] Starting aircraft inspection process...
+[INFO] No aircraft need inspection
+[INFO] Starting aircraft repair process...
+[INFO] No aircraft available for repair
+[INFO] Aircraft maintenance operations completed
+[INFO] --- Starting aircraft departure operations... ---
+[INFO] Checking for ready-to-depart aircraft...
+[INFO] No aircraft available for departure
+[INFO] Aircraft departure operations completed
+[INFO] === All operations successfully completed ===
