@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { GeneralUtils } from "./general.utils";
+import { GeneralUtils } from "./00_general.utils";
 
 require('dotenv').config();
 

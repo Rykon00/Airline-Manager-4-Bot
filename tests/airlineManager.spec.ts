@@ -1,9 +1,9 @@
 import { test } from '@playwright/test';
-import { GeneralUtils } from '../utils/general.utils';
-import { FuelUtils } from '../utils/fuel.utils';
-import { CampaignUtils } from '../utils/campaign.utils';
-import { FleetUtils } from '../utils/fleet.utils';
-import { MaintenanceUtils } from '../utils/maintenance.utils';
+import { GeneralUtils } from '../utils/00_general.utils';
+import { FuelUtils } from '../utils/01_fuel.utils';
+import { CampaignUtils } from '../utils/02_campaign.utils';
+import { FleetUtils } from '../utils/04_fleet.utils';
+import { MaintenanceUtils } from '../utils/03_maintenance.utils';
 
 require('dotenv').config();
 
