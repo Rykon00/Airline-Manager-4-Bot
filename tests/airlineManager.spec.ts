@@ -30,11 +30,9 @@ test('All Operations', async ({ page }) => {
   await fuelUtils.buyCo2();
 
   await page.locator('#popup > .modal-dialog > .modal-content > .modal-header > div > .glyphicons').click();
-  // End //
-
-  // Campaign Operations //
+  // End //  // Campaign Operations //
   await page.locator('div:nth-child(5) > #mapMaint > img').click();
-  await campaignUtils.createCampaign();
+  await campaignUtils.checkAndCreateEcoFriendlyCampaign();
 
   await page.locator('#popup > .modal-dialog > .modal-content > .modal-header > div > .glyphicons').click();
   await GeneralUtils.sleep(1000)

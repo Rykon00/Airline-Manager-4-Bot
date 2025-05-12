@@ -6,24 +6,27 @@ export class CampaignUtils {
 
     constructor(page : Page) {
         this.page = page;
-    }
+    }    public async checkAndCreateEcoFriendlyCampaign() {
+        console.log('Checking and Creating Eco-Friendly Campaign if needed...')
 
-    public async createCampaign() {
-        console.log('Create Campaing Started...')
-
-        await this.page.getByRole('button', { name: ' Marketing' }).click();
+        await this.page.getByRole('button', { name: ' Marketing' }).click();
 
         await GeneralUtils.sleep(1000);
 
-        const isEcoFriendExists = await this.page.getByRole('cell', { name: ' Eco friendly' }).isVisible();
-        if(!isEcoFriendExists) {
-            await this.page.getByRole('button', { name: ' New campaign' }).click();
+        // First check if there's already an active eco-friendly campaign
+        const isActiveEcoFriendlyCampaign = await this.page.getByRole('cell', { name: ' Eco friendly' }).isVisible();
+        
+        if(isActiveEcoFriendlyCampaign) {
+            console.log('Eco-Friendly Campaign is already active, no need to create a new one.');
+        } else {
+            // If no active campaign, create a new one
+            await this.page.getByRole('button', { name: ' New campaign' }).click();
             await this.page.getByRole('cell', { name: 'Eco-friendly Increases' }).click();
             await this.page.getByRole('button', { name: '$' }).click();
 
-            console.log("Eco Friendly Campaign Created Successfully!");
+            console.log("Eco-Friendly Campaign created successfully!");
         }
 
-        console.log('Campaign Created Finished!');
+        console.log('Eco-Friendly Campaign check completed!');
     }
 }
