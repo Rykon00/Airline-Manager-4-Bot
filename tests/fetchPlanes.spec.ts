@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 import { GeneralUtils } from '../utils/00_general.utils';
-import { FleetUtils } from '../utils/04_fleet.utils';
+import { FetchPlanesUtils } from '../utils/fleet/fetchPlanes.utils';
 import * as fs from 'fs';
 
 require('dotenv').config();
@@ -10,7 +10,7 @@ test('Fetch All Planes', async ({ page }) => {
 
   // Initialize utilities
   const generalUtils = new GeneralUtils(page);
-  const fleetUtils = new FleetUtils(page);
+  const fetchPlanesUtils = new FetchPlanesUtils(page);
 
   // Login to the system
   await generalUtils.login(page);
@@ -19,7 +19,7 @@ test('Fetch All Planes', async ({ page }) => {
   // Fetch all planes and write to JSON
   try {
     console.log('Starting to fetch all planes...');
-    const planes = await fleetUtils.getAllPlanes();
+    const planes = await fetchPlanesUtils.getAllPlanes();
     console.log(`Successfully fetched ${planes.length} planes`);
     
     // Write data to JSON file

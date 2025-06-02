@@ -43,13 +43,18 @@ test('All Operations', async ({ page }) => {
   // End //
 
   // Repair Planes if needed //
+  console.log('Navigating to Maintenance section.');
   await page.locator('div:nth-child(4) > #mapMaint > img').click();
 
+  console.log('Checking planes for maintenance.');
   await maintenanceUtils.checkPlanes();
   await GeneralUtils.sleep(1000);
+
+  console.log('Repairing planes if necessary.');
   await maintenanceUtils.repairPlanes();
   await GeneralUtils.sleep(1000);
 
+  console.log('Closing maintenance popup.');
   await page.locator('#popup > .modal-dialog > .modal-content > .modal-header > div > .glyphicons').click();
   // End //
   // Depart Planes Operations //
