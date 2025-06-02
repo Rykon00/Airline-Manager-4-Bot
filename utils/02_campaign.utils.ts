@@ -9,42 +9,24 @@ export class CampaignUtils {
     }    
     
     public async checkAndCreateEcoFriendlyCampaign() {
-        console.log('Checking and Creating Eco-Friendly Campaign if needed...');
+        console.log('Checking and Creating Eco-Friendly Campaign if needed...')
 
-        try {
-            await this.page.getByRole('button', { name: ' Marketing' }).click();
-            await GeneralUtils.sleep(1000);
+        await this.page.getByRole('button', { name: ' Marketing' }).click();
 
-            // Check if there's already an active eco-friendly campaign
-            const isActiveEcoFriendlyCampaign = await this.page.getByRole('cell', { name: ' Eco friendly' }).isVisible();
+        await GeneralUtils.sleep(1000);
 
-            if (isActiveEcoFriendlyCampaign) {
-                console.log('Eco-Friendly Campaign is already active, no need to create a new one.');
-                return;
-            }
-
-            // Check if enough funds are available
-            const fundsAvailable = await this.page.getByText('Available funds:').locator('span').innerText();
-            const funds = parseFloat(fundsAvailable.replace(/[^0-9.-]+/g, ''));
-
-            if (isNaN(funds)) {
-                console.log('Error: Unable to parse available funds. Skipping campaign creation.');
-                return;
-            }
-
-            if (funds < 1000) { // Assuming 1000 is the minimum required amount
-                console.log(`Not enough funds to create an Eco-Friendly Campaign. Available: ${funds}, Required: 1000. Skipping...`);
-                return;
-            }
-
-            // If no active campaign and enough funds, create a new one
+        // First check if there's already an active eco-friendly campaign
+        const isActiveEcoFriendlyCampaign = await this.page.getByRole('cell', { name: ' Eco friendly' }).isVisible();
+        
+        if(isActiveEcoFriendlyCampaign) {
+            console.log('Eco-Friendly Campaign is already active, no need to create a new one.');
+        } else {
+            // If no active campaign, create a new one
             await this.page.getByRole('button', { name: ' New campaign' }).click();
             await this.page.getByRole('cell', { name: 'Eco-friendly Increases' }).click();
             await this.page.getByRole('button', { name: '$' }).click();
 
-            console.log('Eco-Friendly Campaign created successfully!');
-        } catch (error) {
-            console.log('An error occurred while checking or creating the Eco-Friendly Campaign:', (error as Error).message);
+            console.log("Eco-Friendly Campaign created successfully!");
         }
 
         console.log('Eco-Friendly Campaign check completed!');
