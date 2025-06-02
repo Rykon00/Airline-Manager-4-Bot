@@ -132,46 +132,45 @@ export class FleetUtils {
                                 await planeLinkLocator.click();
                                 
                                 const detailsContainerLocator = this.page.locator('#detailsAction');
-                                try {
-                                    await detailsContainerLocator.waitFor({ state: 'visible', timeout: 15000 });
+                                try {                                    await detailsContainerLocator.waitFor({ state: 'visible', timeout: 15000 });
                                     console.log(`${identifier}: #detailsAction container is visible for ${planeInfo.planeId}.`);
                                     
-                                    // Wait for the back navigation link to be visible as a sign that the modal content is loaded
-                                    const backNavigationLink = detailsContainerLocator.locator('a').filter({ hasText: /^< ?L-\\d+/ }).first();
-                                    await expect(backNavigationLink).toBeVisible({ timeout: 10000 });
-                                    console.log(`${identifier}: Modal content (back button) appears loaded for ${planeInfo.planeId}.`);
+                                    // Wait for modal content to be loaded by checking for any content in the container
+                                    await GeneralUtils.sleep(2000); // Give modal time to load content
+                                    console.log(`${identifier}: Modal content loaded for ${planeInfo.planeId}.`);
 
                                     const details = await this.extractDetailFromContainer(detailsContainerLocator, planeInfo.planeId || identifier);
                                     planeInfo = { ...planeInfo, ...details };
                                     console.log(`${identifier}: Successfully extracted details for ${planeInfo.planeId}`);
 
-                                    // Attempt to close the modal by clicking the back button
-                                    console.log(`${identifier}: Attempting to close details modal for ${planeInfo.planeId} by clicking the back button.`);
-                                    await backNavigationLink.click();
+                                    // Attempt to close the modal by clicking the Fleet tab to return to overview
+                                    console.log(`${identifier}: Attempting to close details modal for ${planeInfo.planeId} by clicking Fleet tab.`);
+                                    await this.page.getByRole('button', { name: ' Fleet' }).click();
                                     await detailsContainerLocator.waitFor({ state: 'hidden', timeout: 10000 });
                                     console.log(`${identifier}: Details modal successfully closed for ${planeInfo.planeId}.`);
 
                                 } catch (detailsError: any) {
                                     console.error(`${identifier}: Error during detail processing or closing for ${planeInfo.planeId}: ${(detailsError as Error).message}`);
                                     planeInfo.error = (planeInfo.error ? planeInfo.error + "; " : "") + `Details processing/closing failed: ${(detailsError as Error).message}`;
-                                    
-                                    // Robustly attempt to close modal if it's still visible after an error
+                                      // Robustly attempt to close modal if it's still visible after an error
                                     if (await detailsContainerLocator.isVisible()) {
                                         console.warn(`${identifier}: Modal still visible after error. Attempting to close again for ${planeInfo.planeId}.`);
                                         try {
-                                            const backNavOnError = detailsContainerLocator.locator('a').filter({ hasText: /^< ?L-\\d+/ }).first();
-                                            if (await backNavOnError.isVisible({timeout: 3000})) { // Quick check for visibility
-                                                await backNavOnError.click();
-                                            } else {
-                                                console.warn(`${identifier}: Back button not visible on error. Trying Escape key as fallback.`);
-                                                await this.page.keyboard.press('Escape');
-                                            }
+                                            console.log(`${identifier}: Trying Fleet tab to close modal for ${planeInfo.planeId}.`);
+                                            await this.page.getByRole('button', { name: ' Fleet' }).click();
                                             await detailsContainerLocator.waitFor({ state: 'hidden', timeout: 5000 });
                                             console.log(`${identifier}: Details modal successfully closed after error for ${planeInfo.planeId}.`);
                                         } catch (closeError: any) {
-                                            console.error(`${identifier}: FAILED to close details modal after error for ${planeInfo.planeId}: ${(closeError as Error).message}. Script might be stuck.`);
-                                            planeInfo.error += `; FAILED_TO_CLOSE_MODAL_AFTER_ERROR: ${(closeError as Error).message}`;
-                                            // Consider a more drastic recovery if this happens often, e.g., page reload.
+                                            console.warn(`${identifier}: Fleet tab failed. Trying Escape key as fallback for ${planeInfo.planeId}.`);
+                                            try {
+                                                await this.page.keyboard.press('Escape');
+                                                await detailsContainerLocator.waitFor({ state: 'hidden', timeout: 5000 });
+                                                console.log(`${identifier}: Details modal successfully closed with Escape key for ${planeInfo.planeId}.`);
+                                            } catch (escapeError: any) {
+                                                console.error(`${identifier}: FAILED to close details modal after error for ${planeInfo.planeId}: ${(escapeError as Error).message}. Script might be stuck.`);
+                                                planeInfo.error += `; FAILED_TO_CLOSE_MODAL_AFTER_ERROR: ${(escapeError as Error).message}`;
+                                                // Consider a more drastic recovery if this happens often, e.g., page reload.
+                                            }
                                         }
                                     }
                                 }
@@ -289,60 +288,145 @@ export class FleetUtils {
             console.warn(`Error or timeout extracting for label "${labelWithColon}": ${(e as Error).message.split('\n')[0]}`);
             return null;
         }
-    }
-
-    // Helper function to extract details from the #detailsAction container
+    }    // Helper function to extract details from the #detailsAction container
     private async extractDetailFromContainer(detailsContainer: Locator, identifier: string): Promise<Partial<PlaneInfo>> {
         console.log(`Extracting details from #detailsAction for: ${identifier}`);
         const details: Partial<PlaneInfo> = {};
 
-        // Wait for a general element in the modal to ensure content is likely loaded.
-        // The caller of this function already waits for the back button,
-        // which is a good sign. We can add a small delay or wait for a specific title if needed.
-        // For now, rely on the back button wait and individual timeouts in getTextFromDivLabel.
+        try {
+            // Extract aircraft type - look for text that follows "Aircraft" 
+            const aircraftTextLocator = detailsContainer.getByText('Aircraft', { exact: true });
+            if (await aircraftTextLocator.count() > 0) {
+                // Get the next sibling or parent container that contains the aircraft type
+                const aircraftTypeElement = aircraftTextLocator.locator('..').locator('text').nth(1);
+                if (await aircraftTypeElement.count() > 0) {
+                    details.aircraftType = await aircraftTypeElement.textContent();
+                } else {
+                    // Alternative: look for any text after "Aircraft" in the same container
+                    const parentText = await aircraftTextLocator.locator('..').textContent();
+                    if (parentText) {
+                        const match = parentText.match(/Aircraft\s+(.+?)(?:\s|$)/);
+                        if (match) details.aircraftType = match[1].trim();
+                    }
+                }
+            }
 
-        details.aircraftType = await this.getTextFromDivLabel(detailsContainer, "Aircraft Type:");
-        details.delivered = await this.getTextFromDivLabel(detailsContainer, "Delivered:");
-        
-        // For "Hours to check", try a few common variations if the primary one fails
-        details.hoursToCheck = await this.getTextFromDivLabel(detailsContainer, "Hours to A/C/D check:");
-        if (!details.hoursToCheck) {
-            details.hoursToCheck = await this.getTextFromDivLabel(detailsContainer, "Hours to C check:");
-        }
-        if (!details.hoursToCheck) {
-            details.hoursToCheck = await this.getTextFromDivLabel(detailsContainer, "Hours to D check:");
-        }
-        if (!details.hoursToCheck) {
-            details.hoursToCheck = await this.getTextFromDivLabel(detailsContainer, "Hours to A check:");
-        }
-        if (!details.hoursToCheck) {
-            details.hoursToCheck = await this.getTextFromDivLabel(detailsContainer, "Maintenance:");
-        }
+            // Extract delivered date - look for text that follows "Delivered"
+            const deliveredTextLocator = detailsContainer.getByText('Delivered');
+            if (await deliveredTextLocator.count() > 0) {
+                const deliveredElement = deliveredTextLocator.locator('..').locator('text').nth(1);
+                if (await deliveredElement.count() > 0) {
+                    details.delivered = await deliveredElement.textContent();
+                } else {
+                    // Alternative: look for pattern like "24 days ago"
+                    const parentText = await deliveredTextLocator.locator('..').textContent();
+                    if (parentText) {
+                        const match = parentText.match(/Delivered\s+(.+?)(?:\s|$)/);
+                        if (match) details.delivered = match[1].trim();
+                    }
+                }
+            }
 
+            // Extract hours to check - look for text that follows "Hours to check"
+            const hoursToCheckLocator = detailsContainer.getByText('Hours to check');
+            if (await hoursToCheckLocator.count() > 0) {
+                const hoursElement = hoursToCheckLocator.locator('..').locator('text').nth(1);
+                if (await hoursElement.count() > 0) {
+                    details.hoursToCheck = await hoursElement.textContent();
+                } else {
+                    // Alternative: look for numeric pattern
+                    const parentText = await hoursToCheckLocator.locator('..').textContent();
+                    if (parentText) {
+                        const match = parentText.match(/Hours to check\s+(\d+)/);
+                        if (match) details.hoursToCheck = match[1];
+                    }
+                }
+            }
 
-        details.range = await this.getTextFromDivLabel(detailsContainer, "Range:");
+            // Extract range - look for text that follows "Range"
+            const rangeLocator = detailsContainer.getByText('Range');
+            if (await rangeLocator.count() > 0) {
+                const rangeElement = rangeLocator.locator('..').locator('text').nth(1);
+                if (await rangeElement.count() > 0) {
+                    details.range = await rangeElement.textContent();
+                } else {
+                    // Alternative: look for pattern like "1,700km"
+                    const parentText = await rangeLocator.locator('..').textContent();
+                    if (parentText) {
+                        const match = parentText.match(/Range\s+([\d,]+km)/);
+                        if (match) details.range = match[1];
+                    }
+                }
+            }
 
-        const flightHours = await this.getTextFromDivLabel(detailsContainer, "Flight Hours:");
-        const cycles = await this.getTextFromDivLabel(detailsContainer, "Cycles:");
-        if (flightHours && cycles) {
-            details.flightHoursCycles = `${flightHours} / ${cycles}`;
-        } else if (flightHours) {
-            details.flightHoursCycles = flightHours;
-        } else if (cycles) {
-            details.flightHoursCycles = `? / ${cycles}`;
+            // Extract flight hours/cycles - look for text that follows "Flight hours/Cycles"
+            const flightHoursCyclesLocator = detailsContainer.getByText('Flight hours/Cycles');
+            if (await flightHoursCyclesLocator.count() > 0) {
+                const flightHoursCyclesElement = flightHoursCyclesLocator.locator('..').locator('text').nth(1);
+                if (await flightHoursCyclesElement.count() > 0) {
+                    details.flightHoursCycles = await flightHoursCyclesElement.textContent();
+                } else {
+                    // Alternative: look for pattern like "/ 138"
+                    const parentText = await flightHoursCyclesLocator.locator('..').textContent();
+                    if (parentText) {
+                        const match = parentText.match(/Flight hours\/Cycles\s+(.+?)(?:\s|$)/);
+                        if (match) details.flightHoursCycles = match[1].trim();
+                    }
+                }
+            }
+
+            // Extract min runway - look for text that follows "Min runway"
+            const minRunwayLocator = detailsContainer.getByText('Min runway');
+            if (await minRunwayLocator.count() > 0) {
+                const minRunwayElement = minRunwayLocator.locator('..').locator('text').nth(1);
+                if (await minRunwayElement.count() > 0) {
+                    details.minRunway = await minRunwayElement.textContent();
+                } else {
+                    // Alternative: look for pattern like "7,700ft"
+                    const parentText = await minRunwayLocator.locator('..').textContent();
+                    if (parentText) {
+                        const match = parentText.match(/Min runway\s+([\d,]+ft)/);
+                        if (match) details.minRunway = match[1];
+                    }
+                }
+            }
+
+            // Extract wear - look for text that follows "Wear"
+            const wearLocator = detailsContainer.getByText('Wear');
+            if (await wearLocator.count() > 0) {
+                const wearElement = wearLocator.locator('..').locator('text').nth(1);
+                if (await wearElement.count() > 0) {
+                    details.wear = await wearElement.textContent();
+                } else {
+                    // Alternative: look for percentage pattern
+                    const parentText = await wearLocator.locator('..').textContent();
+                    if (parentText) {
+                        const match = parentText.match(/Wear\s+([\d.]+%)/);
+                        if (match) details.wear = match[1];
+                    }
+                }
+            }
+
+            // Extract plane type - look for text that follows "Type"
+            const typeLocator = detailsContainer.getByText('Type', { exact: true });
+            if (await typeLocator.count() > 0) {
+                const typeElement = typeLocator.locator('..').locator('text').nth(1);
+                if (await typeElement.count() > 0) {
+                    details.planeType = await typeElement.textContent();
+                } else {
+                    // Alternative: look for "Pax" or other type indicators
+                    const parentText = await typeLocator.locator('..').textContent();
+                    if (parentText) {
+                        const match = parentText.match(/Type\s+(.+?)(?:\s|$)/);
+                        if (match) details.planeType = match[1].trim();
+                    }
+                }
+            }
+
+        } catch (error: any) {
+            console.error(`Error extracting details for ${identifier}: ${error.message}`);
+            details.error = `Extraction failed: ${error.message}`;
         }
-
-        details.minRunway = await this.getTextFromDivLabel(detailsContainer, "Min. Runway:");
-        if (!details.minRunway) {
-            details.minRunway = await this.getTextFromDivLabel(detailsContainer, "Min Runway:");
-        }
-        
-        details.wear = await this.getTextFromDivLabel(detailsContainer, "Wear:");
-        
-        // planeType might be the same as aircraftType or a more general category.
-        // For now, let's assume aircraftType is the specific one we need.
-        // details.planeType = await this.getTextFromDivLabel(detailsContainer, "Plane Type:");
-
 
         console.log(`Details extracted for ${identifier}: `, JSON.stringify(details, null, 2));
 
