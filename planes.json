@@ -1,21 +1,5 @@
 [
   {
-    "planeId": null,
-    "detailPageUrl": null,
-    "rawRouteText": null,
-    "aircraftType": null,
-    "delivered": null,
-    "hoursToCheck": null,
-    "range": null,
-    "flightHoursCycles": null,
-    "minRunway": null,
-    "wear": null,
-    "planeType": null,
-    "departureAirport": null,
-    "arrivalAirport": null,
-    "error": "Row 0, Page 1: No 'a' tag found by planeLinkLocator (likely a separator or empty row)."
-  },
-  {
     "planeId": "LU-029-3 - Caravelle III",
     "detailPageUrl": "javascript:void(0);",
     "rawRouteText": null,
@@ -29,22 +13,6 @@
     "planeType": "Pax",
     "departureAirport": null,
     "arrivalAirport": null
-  },
-  {
-    "planeId": null,
-    "detailPageUrl": null,
-    "rawRouteText": null,
-    "aircraftType": null,
-    "delivered": null,
-    "hoursToCheck": null,
-    "range": null,
-    "flightHoursCycles": null,
-    "minRunway": null,
-    "wear": null,
-    "planeType": null,
-    "departureAirport": null,
-    "arrivalAirport": null,
-    "error": "Row 2, Page 1: No 'a' tag found by planeLinkLocator (likely a separator or empty row)."
   },
   {
     "planeId": "LU-029-4 - Caravelle III",
@@ -62,22 +30,6 @@
     "arrivalAirport": null
   },
   {
-    "planeId": null,
-    "detailPageUrl": null,
-    "rawRouteText": null,
-    "aircraftType": null,
-    "delivered": null,
-    "hoursToCheck": null,
-    "range": null,
-    "flightHoursCycles": null,
-    "minRunway": null,
-    "wear": null,
-    "planeType": null,
-    "departureAirport": null,
-    "arrivalAirport": null,
-    "error": "Row 4, Page 1: No 'a' tag found by planeLinkLocator (likely a separator or empty row)."
-  },
-  {
     "planeId": "LU-029-6 - Caravelle III",
     "detailPageUrl": "javascript:void(0);",
     "rawRouteText": null,
@@ -91,22 +43,6 @@
     "planeType": "Pax",
     "departureAirport": null,
     "arrivalAirport": null
-  },
-  {
-    "planeId": null,
-    "detailPageUrl": null,
-    "rawRouteText": null,
-    "aircraftType": null,
-    "delivered": null,
-    "hoursToCheck": null,
-    "range": null,
-    "flightHoursCycles": null,
-    "minRunway": null,
-    "wear": null,
-    "planeType": null,
-    "departureAirport": null,
-    "arrivalAirport": null,
-    "error": "Row 6, Page 1: No 'a' tag found by planeLinkLocator (likely a separator or empty row)."
   },
   {
     "planeId": "LU-029-5 - Caravelle III",
@@ -124,22 +60,6 @@
     "arrivalAirport": null
   },
   {
-    "planeId": null,
-    "detailPageUrl": null,
-    "rawRouteText": null,
-    "aircraftType": null,
-    "delivered": null,
-    "hoursToCheck": null,
-    "range": null,
-    "flightHoursCycles": null,
-    "minRunway": null,
-    "wear": null,
-    "planeType": null,
-    "departureAirport": null,
-    "arrivalAirport": null,
-    "error": "Row 8, Page 1: No 'a' tag found by planeLinkLocator (likely a separator or empty row)."
-  },
-  {
     "planeId": "LU-029-2 - Caravelle III",
     "detailPageUrl": "javascript:void(0);",
     "rawRouteText": null,
@@ -153,22 +73,6 @@
     "planeType": "Pax",
     "departureAirport": null,
     "arrivalAirport": null
-  },
-  {
-    "planeId": null,
-    "detailPageUrl": null,
-    "rawRouteText": null,
-    "aircraftType": null,
-    "delivered": null,
-    "hoursToCheck": null,
-    "range": null,
-    "flightHoursCycles": null,
-    "minRunway": null,
-    "wear": null,
-    "planeType": null,
-    "departureAirport": null,
-    "arrivalAirport": null,
-    "error": "Row 10, Page 1: No 'a' tag found by planeLinkLocator (likely a separator or empty row)."
   },
   {
     "planeId": "A320-200_1 - A320-200",
@@ -186,22 +90,6 @@
     "arrivalAirport": null
   },
   {
-    "planeId": null,
-    "detailPageUrl": null,
-    "rawRouteText": null,
-    "aircraftType": null,
-    "delivered": null,
-    "hoursToCheck": null,
-    "range": null,
-    "flightHoursCycles": null,
-    "minRunway": null,
-    "wear": null,
-    "planeType": null,
-    "departureAirport": null,
-    "arrivalAirport": null,
-    "error": "Row 12, Page 1: No 'a' tag found by planeLinkLocator (likely a separator or empty row)."
-  },
-  {
     "planeId": "LU-005 - ATR 72-500",
     "detailPageUrl": "javascript:void(0);",
     "rawRouteText": null,
@@ -215,22 +103,6 @@
     "planeType": "Pax",
     "departureAirport": null,
     "arrivalAirport": null
-  },
-  {
-    "planeId": null,
-    "detailPageUrl": null,
-    "rawRouteText": null,
-    "aircraftType": null,
-    "delivered": null,
-    "hoursToCheck": null,
-    "range": null,
-    "flightHoursCycles": null,
-    "minRunway": null,
-    "wear": null,
-    "planeType": null,
-    "departureAirport": null,
-    "arrivalAirport": null,
-    "error": "Row 14, Page 1: No 'a' tag found by planeLinkLocator (likely a separator or empty row)."
   },
   {
     "planeId": "LU-010 - ERJ 135ER",
@@ -248,22 +120,6 @@
     "arrivalAirport": null
   },
   {
-    "planeId": null,
-    "detailPageUrl": null,
-    "rawRouteText": null,
-    "aircraftType": null,
-    "delivered": null,
-    "hoursToCheck": null,
-    "range": null,
-    "flightHoursCycles": null,
-    "minRunway": null,
-    "wear": null,
-    "planeType": null,
-    "departureAirport": null,
-    "arrivalAirport": null,
-    "error": "Row 16, Page 1: No 'a' tag found by planeLinkLocator (likely a separator or empty row)."
-  },
-  {
     "planeId": "320VIP - A320-VIP",
     "detailPageUrl": "javascript:void(0);",
     "rawRouteText": null,
@@ -277,22 +133,6 @@
     "planeType": "Pax",
     "departureAirport": null,
     "arrivalAirport": null
-  },
-  {
-    "planeId": null,
-    "detailPageUrl": null,
-    "rawRouteText": null,
-    "aircraftType": null,
-    "delivered": null,
-    "hoursToCheck": null,
-    "range": null,
-    "flightHoursCycles": null,
-    "minRunway": null,
-    "wear": null,
-    "planeType": null,
-    "departureAirport": null,
-    "arrivalAirport": null,
-    "error": "Row 18, Page 1: No 'a' tag found by planeLinkLocator (likely a separator or empty row)."
   },
   {
     "planeId": "LU-002-2 - DC-9-10",
@@ -310,22 +150,6 @@
     "arrivalAirport": null
   },
   {
-    "planeId": null,
-    "detailPageUrl": null,
-    "rawRouteText": null,
-    "aircraftType": null,
-    "delivered": null,
-    "hoursToCheck": null,
-    "range": null,
-    "flightHoursCycles": null,
-    "minRunway": null,
-    "wear": null,
-    "planeType": null,
-    "departureAirport": null,
-    "arrivalAirport": null,
-    "error": "Row 20, Page 1: No 'a' tag found by planeLinkLocator (likely a separator or empty row)."
-  },
-  {
     "planeId": "LU-002 - DC-9-10",
     "detailPageUrl": "javascript:void(0);",
     "rawRouteText": null,
@@ -339,22 +163,6 @@
     "planeType": "Pax",
     "departureAirport": null,
     "arrivalAirport": null
-  },
-  {
-    "planeId": null,
-    "detailPageUrl": null,
-    "rawRouteText": null,
-    "aircraftType": null,
-    "delivered": null,
-    "hoursToCheck": null,
-    "range": null,
-    "flightHoursCycles": null,
-    "minRunway": null,
-    "wear": null,
-    "planeType": null,
-    "departureAirport": null,
-    "arrivalAirport": null,
-    "error": "Row 22, Page 1: No 'a' tag found by planeLinkLocator (likely a separator or empty row)."
   },
   {
     "planeId": "LU-002-3 - DC-9-10",
@@ -372,22 +180,6 @@
     "arrivalAirport": null
   },
   {
-    "planeId": null,
-    "detailPageUrl": null,
-    "rawRouteText": null,
-    "aircraftType": null,
-    "delivered": null,
-    "hoursToCheck": null,
-    "range": null,
-    "flightHoursCycles": null,
-    "minRunway": null,
-    "wear": null,
-    "planeType": null,
-    "departureAirport": null,
-    "arrivalAirport": null,
-    "error": "Row 24, Page 1: No 'a' tag found by planeLinkLocator (likely a separator or empty row)."
-  },
-  {
     "planeId": "LU-029 - Caravelle III",
     "detailPageUrl": "javascript:void(0);",
     "rawRouteText": null,
@@ -401,22 +193,6 @@
     "planeType": "Pax",
     "departureAirport": null,
     "arrivalAirport": null
-  },
-  {
-    "planeId": null,
-    "detailPageUrl": null,
-    "rawRouteText": null,
-    "aircraftType": null,
-    "delivered": null,
-    "hoursToCheck": null,
-    "range": null,
-    "flightHoursCycles": null,
-    "minRunway": null,
-    "wear": null,
-    "planeType": null,
-    "departureAirport": null,
-    "arrivalAirport": null,
-    "error": "Row 26, Page 1: No 'a' tag found by planeLinkLocator (likely a separator or empty row)."
   },
   {
     "planeId": "LU-063-4 - CRJ 1000",
@@ -434,22 +210,6 @@
     "arrivalAirport": null
   },
   {
-    "planeId": null,
-    "detailPageUrl": null,
-    "rawRouteText": null,
-    "aircraftType": null,
-    "delivered": null,
-    "hoursToCheck": null,
-    "range": null,
-    "flightHoursCycles": null,
-    "minRunway": null,
-    "wear": null,
-    "planeType": null,
-    "departureAirport": null,
-    "arrivalAirport": null,
-    "error": "Row 28, Page 1: No 'a' tag found by planeLinkLocator (likely a separator or empty row)."
-  },
-  {
     "planeId": "LU-063 - CRJ 1000",
     "detailPageUrl": "javascript:void(0);",
     "rawRouteText": null,
@@ -463,22 +223,6 @@
     "planeType": "Pax",
     "departureAirport": null,
     "arrivalAirport": null
-  },
-  {
-    "planeId": null,
-    "detailPageUrl": null,
-    "rawRouteText": null,
-    "aircraftType": null,
-    "delivered": null,
-    "hoursToCheck": null,
-    "range": null,
-    "flightHoursCycles": null,
-    "minRunway": null,
-    "wear": null,
-    "planeType": null,
-    "departureAirport": null,
-    "arrivalAirport": null,
-    "error": "Row 30, Page 1: No 'a' tag found by planeLinkLocator (likely a separator or empty row)."
   },
   {
     "planeId": "LU-063-2 - CRJ 1000",
@@ -496,22 +240,6 @@
     "arrivalAirport": null
   },
   {
-    "planeId": null,
-    "detailPageUrl": null,
-    "rawRouteText": null,
-    "aircraftType": null,
-    "delivered": null,
-    "hoursToCheck": null,
-    "range": null,
-    "flightHoursCycles": null,
-    "minRunway": null,
-    "wear": null,
-    "planeType": null,
-    "departureAirport": null,
-    "arrivalAirport": null,
-    "error": "Row 32, Page 1: No 'a' tag found by planeLinkLocator (likely a separator or empty row)."
-  },
-  {
     "planeId": "LU-063-5 - CRJ 1000",
     "detailPageUrl": "javascript:void(0);",
     "rawRouteText": null,
@@ -525,22 +253,6 @@
     "planeType": "Pax",
     "departureAirport": null,
     "arrivalAirport": null
-  },
-  {
-    "planeId": null,
-    "detailPageUrl": null,
-    "rawRouteText": null,
-    "aircraftType": null,
-    "delivered": null,
-    "hoursToCheck": null,
-    "range": null,
-    "flightHoursCycles": null,
-    "minRunway": null,
-    "wear": null,
-    "planeType": null,
-    "departureAirport": null,
-    "arrivalAirport": null,
-    "error": "Row 34, Page 1: No 'a' tag found by planeLinkLocator (likely a separator or empty row)."
   },
   {
     "planeId": "LU-063-3 - CRJ 1000",
@@ -558,22 +270,6 @@
     "arrivalAirport": null
   },
   {
-    "planeId": null,
-    "detailPageUrl": null,
-    "rawRouteText": null,
-    "aircraftType": null,
-    "delivered": null,
-    "hoursToCheck": null,
-    "range": null,
-    "flightHoursCycles": null,
-    "minRunway": null,
-    "wear": null,
-    "planeType": null,
-    "departureAirport": null,
-    "arrivalAirport": null,
-    "error": "Row 36, Page 1: No 'a' tag found by planeLinkLocator (likely a separator or empty row)."
-  },
-  {
     "planeId": "LU-057-5 - B737-300",
     "detailPageUrl": "javascript:void(0);",
     "rawRouteText": null,
@@ -587,22 +283,6 @@
     "planeType": "Pax",
     "departureAirport": null,
     "arrivalAirport": null
-  },
-  {
-    "planeId": null,
-    "detailPageUrl": null,
-    "rawRouteText": null,
-    "aircraftType": null,
-    "delivered": null,
-    "hoursToCheck": null,
-    "range": null,
-    "flightHoursCycles": null,
-    "minRunway": null,
-    "wear": null,
-    "planeType": null,
-    "departureAirport": null,
-    "arrivalAirport": null,
-    "error": "Row 38, Page 1: No 'a' tag found by planeLinkLocator (likely a separator or empty row)."
   },
   {
     "planeId": "LU-057-6 - B737-300",
