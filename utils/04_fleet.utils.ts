@@ -103,89 +103,96 @@ export class FleetUtils {
                     console.log(`No route rows found on page ${currentPage}. Ending pagination.`);
                     hasNextPage = false;
                     continue;
-                }
-
-                for (let i = 0; i < rowCount; i++) {
+                }                for (let i = 0; i < rowCount; i++) {
                     const currentRow = rowsLocator.nth(i);
-                    let planeInfo: PlaneInfo = { planeId: null, detailPageUrl: null, rawRouteText: null, aircraftType: null, delivered: null, hoursToCheck: null, range: null, flightHoursCycles: null, minRunway: null, wear: null, planeType: null, departureAirport: null, arrivalAirport: null, error: undefined };
                     const identifier = `Row ${i}, Page ${currentPage}`;
 
                     const planeLinkLocator = currentRow.locator('a').first();
                     const linkCount = await planeLinkLocator.count();
 
                     if (linkCount === 0) {
-                        const errorMsg = `${identifier}: No 'a' tag found by planeLinkLocator (likely a separator or empty row).`;
-                        console.warn(errorMsg);
-                        planeInfo.error = errorMsg;
-                    } else {
-                        try {
-                            await planeLinkLocator.waitFor({ state: 'visible', timeout: 5000 });
-                            const planeIdFromLink = await planeLinkLocator.textContent();
-                            const detailUrl = await planeLinkLocator.getAttribute('href');
+                        console.log(`${identifier}: No 'a' tag found by planeLinkLocator (likely a separator or empty row). Skipping.`);
+                        continue; // Skip this row entirely - don't create a planeInfo entry
+                    }
 
-                            planeInfo.planeId = planeIdFromLink ? planeIdFromLink.trim() : null;
-                            planeInfo.detailPageUrl = detailUrl ? detailUrl.trim() : null;
-                            console.log(`${identifier}: Extracted planeId: ${planeInfo.planeId}, detailPageUrl: ${planeInfo.detailPageUrl}`);
+                    // Only create planeInfo object for rows that have links
+                    let planeInfo: PlaneInfo = { planeId: null, detailPageUrl: null, rawRouteText: null, aircraftType: null, delivered: null, hoursToCheck: null, range: null, flightHoursCycles: null, minRunway: null, wear: null, planeType: null, departureAirport: null, arrivalAirport: null, error: undefined };
 
-                            if (planeInfo.detailPageUrl === 'javascript:void(0);') {
-                                console.log(`${identifier}: Clicking javascript:void(0) link for ${planeInfo.planeId}`);
-                                await planeLinkLocator.click();
+                    try {
+                        await planeLinkLocator.waitFor({ state: 'visible', timeout: 5000 });
+                        const planeIdFromLink = await planeLinkLocator.textContent();
+                        const detailUrl = await planeLinkLocator.getAttribute('href');
+
+                        planeInfo.planeId = planeIdFromLink ? planeIdFromLink.trim() : null;
+                        planeInfo.detailPageUrl = detailUrl ? detailUrl.trim() : null;
+                        console.log(`${identifier}: Extracted planeId: ${planeInfo.planeId}, detailPageUrl: ${planeInfo.detailPageUrl}`);
+
+                        if (planeInfo.detailPageUrl === 'javascript:void(0);') {
+                            console.log(`${identifier}: Clicking javascript:void(0) link for ${planeInfo.planeId}`);
+                            await planeLinkLocator.click();
+                            
+                            const detailsContainerLocator = this.page.locator('#detailsAction');
+                            try {                                await detailsContainerLocator.waitFor({ state: 'visible', timeout: 15000 });
+                                console.log(`${identifier}: #detailsAction container is visible for ${planeInfo.planeId}.`);
                                 
-                                const detailsContainerLocator = this.page.locator('#detailsAction');
-                                try {                                    await detailsContainerLocator.waitFor({ state: 'visible', timeout: 15000 });
-                                    console.log(`${identifier}: #detailsAction container is visible for ${planeInfo.planeId}.`);
-                                    
-                                    // Wait for modal content to be loaded by checking for any content in the container
-                                    await GeneralUtils.sleep(2000); // Give modal time to load content
-                                    console.log(`${identifier}: Modal content loaded for ${planeInfo.planeId}.`);
+                                // Wait for modal content to be loaded by checking for any content in the container
+                                await GeneralUtils.sleep(2000); // Give modal time to load content
+                                console.log(`${identifier}: Modal content loaded for ${planeInfo.planeId}.`);
 
-                                    const details = await this.extractDetailFromContainer(detailsContainerLocator, planeInfo.planeId || identifier);
-                                    planeInfo = { ...planeInfo, ...details };
-                                    console.log(`${identifier}: Successfully extracted details for ${planeInfo.planeId}`);
+                                const details = await this.extractDetailFromContainer(detailsContainerLocator, planeInfo.planeId || identifier);
+                                planeInfo = { ...planeInfo, ...details };
+                                console.log(`${identifier}: Successfully extracted details for ${planeInfo.planeId}`);
 
-                                    // Attempt to close the modal by clicking the Fleet tab to return to overview
-                                    console.log(`${identifier}: Attempting to close details modal for ${planeInfo.planeId} by clicking Fleet tab.`);
-                                    await this.page.getByRole('button', { name: ' Fleet' }).click();
-                                    await detailsContainerLocator.waitFor({ state: 'hidden', timeout: 10000 });
-                                    console.log(`${identifier}: Details modal successfully closed for ${planeInfo.planeId}.`);
+                                // Attempt to close the modal by clicking the Fleet tab to return to overview
+                                console.log(`${identifier}: Attempting to close details modal for ${planeInfo.planeId} by clicking Fleet tab.`);
+                                await this.page.getByRole('button', { name: ' Fleet' }).click();
+                                await detailsContainerLocator.waitFor({ state: 'hidden', timeout: 10000 });
+                                console.log(`${identifier}: Details modal successfully closed for ${planeInfo.planeId}.`);
 
-                                } catch (detailsError: any) {
-                                    console.error(`${identifier}: Error during detail processing or closing for ${planeInfo.planeId}: ${(detailsError as Error).message}`);
-                                    planeInfo.error = (planeInfo.error ? planeInfo.error + "; " : "") + `Details processing/closing failed: ${(detailsError as Error).message}`;
-                                      // Robustly attempt to close modal if it's still visible after an error
-                                    if (await detailsContainerLocator.isVisible()) {
-                                        console.warn(`${identifier}: Modal still visible after error. Attempting to close again for ${planeInfo.planeId}.`);
+                                // Only add to allPlanesData if we successfully extracted details
+                                allPlanesData.push(planeInfo);
+                                console.log(`${identifier}: Plane info with details processed and pushed to allPlanesData.`);
+
+                            } catch (detailsError: any) {
+                                console.error(`${identifier}: Error during detail processing or closing for ${planeInfo.planeId}: ${(detailsError as Error).message}`);
+                                planeInfo.error = (planeInfo.error ? planeInfo.error + "; " : "") + `Details processing/closing failed: ${(detailsError as Error).message}`;
+                                  // Robustly attempt to close modal if it's still visible after an error
+                                if (await detailsContainerLocator.isVisible()) {
+                                    console.warn(`${identifier}: Modal still visible after error. Attempting to close again for ${planeInfo.planeId}.`);
+                                    try {
+                                        console.log(`${identifier}: Trying Fleet tab to close modal for ${planeInfo.planeId}.`);
+                                        await this.page.getByRole('button', { name: ' Fleet' }).click();
+                                        await detailsContainerLocator.waitFor({ state: 'hidden', timeout: 5000 });
+                                        console.log(`${identifier}: Details modal successfully closed after error for ${planeInfo.planeId}.`);
+                                    } catch (closeError: any) {
+                                        console.warn(`${identifier}: Fleet tab failed. Trying Escape key as fallback for ${planeInfo.planeId}.`);
                                         try {
-                                            console.log(`${identifier}: Trying Fleet tab to close modal for ${planeInfo.planeId}.`);
-                                            await this.page.getByRole('button', { name: ' Fleet' }).click();
+                                            await this.page.keyboard.press('Escape');
                                             await detailsContainerLocator.waitFor({ state: 'hidden', timeout: 5000 });
-                                            console.log(`${identifier}: Details modal successfully closed after error for ${planeInfo.planeId}.`);
-                                        } catch (closeError: any) {
-                                            console.warn(`${identifier}: Fleet tab failed. Trying Escape key as fallback for ${planeInfo.planeId}.`);
-                                            try {
-                                                await this.page.keyboard.press('Escape');
-                                                await detailsContainerLocator.waitFor({ state: 'hidden', timeout: 5000 });
-                                                console.log(`${identifier}: Details modal successfully closed with Escape key for ${planeInfo.planeId}.`);
-                                            } catch (escapeError: any) {
-                                                console.error(`${identifier}: FAILED to close details modal after error for ${planeInfo.planeId}: ${(escapeError as Error).message}. Script might be stuck.`);
-                                                planeInfo.error += `; FAILED_TO_CLOSE_MODAL_AFTER_ERROR: ${(escapeError as Error).message}`;
-                                                // Consider a more drastic recovery if this happens often, e.g., page reload.
-                                            }
+                                            console.log(`${identifier}: Details modal successfully closed with Escape key for ${planeInfo.planeId}.`);
+                                        } catch (escapeError: any) {
+                                            console.error(`${identifier}: FAILED to close details modal after error for ${planeInfo.planeId}: ${(escapeError as Error).message}. Script might be stuck.`);
+                                            planeInfo.error += `; FAILED_TO_CLOSE_MODAL_AFTER_ERROR: ${(escapeError as Error).message}`;
+                                            // Consider a more drastic recovery if this happens often, e.g., page reload.
                                         }
                                     }
                                 }
-                            } else if (planeInfo.detailPageUrl) {
-                                console.log(`${identifier}: Found direct detailPageUrl: ${planeInfo.detailPageUrl}. (Detail scraping for direct URLs not yet fully implemented).`);
+                                // Still add to allPlanesData even if there was an error, for debugging purposes
+                                allPlanesData.push(planeInfo);
+                                console.log(`${identifier}: Plane info with error processed and pushed to allPlanesData.`);
                             }
-
-                        } catch (extractionError: any) {
-                            console.error(`${identifier}: Error extracting basic info or clicking link: ${(extractionError as Error).message}`);
-                            planeInfo.error = (planeInfo.error ? planeInfo.error + "; " : "") + `Basic extraction/click failed: ${(extractionError as Error).message}`;
+                        } else if (planeInfo.detailPageUrl) {
+                            console.log(`${identifier}: Found direct detailPageUrl: ${planeInfo.detailPageUrl}. (Detail scraping for direct URLs not yet fully implemented). Skipping for now.`);
+                            // Skip direct URLs for now since they're not implemented
                         }
+
+                    } catch (extractionError: any) {
+                        console.error(`${identifier}: Error extracting basic info or clicking link: ${(extractionError as Error).message}`);
+                        planeInfo.error = (planeInfo.error ? planeInfo.error + "; " : "") + `Basic extraction/click failed: ${(extractionError as Error).message}`;
+                        // Add to allPlanesData even with errors for debugging
+                        allPlanesData.push(planeInfo);
+                        console.log(`${identifier}: Plane info with extraction error processed and pushed to allPlanesData.`);
                     }
-                    
-                    allPlanesData.push(planeInfo);
-                    console.log(`Row ${i}, Page ${currentPage}: Plane info processed and pushed to allPlanesData.`);
                 }
 
                 // Check if there's a next page button and if it's visible/enabled
