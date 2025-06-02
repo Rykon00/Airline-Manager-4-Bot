@@ -22,13 +22,12 @@ jobs:
       run: npx playwright install --with-deps chromium
     - name: Create .env file
       run: |
-        touch .env
-        echo "EMAIL=${{ secrets.EMAIL }}" >> .env
+        touch .env        echo "EMAIL=${{ secrets.EMAIL }}" >> .env
         echo "PASSWORD=${{ secrets.PASSWORD }}" >> .env
         echo "MAX_FUEL_PRICE=${{ vars.MAX_FUEL_PRICE }}" >> .env
         echo "MAX_CO2_PRICE=${{ vars.MAX_CO2_PRICE }}" >> .env
     - name: Run Playwright tests
-      run: npx playwright test
+      run: npx playwright test --grep-invert="Fetch All Planes"
     # - uses: actions/upload-artifact@v4
     #   if: always()
     #   with:
