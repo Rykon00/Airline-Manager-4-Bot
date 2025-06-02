@@ -9,7 +9,7 @@ import * as fs from 'fs';
 require('dotenv').config();
 
 test('All Operations', async ({ page }) => {
-  test.setTimeout(180000); // Increased timeout to 3 minutes to handle pagination
+  test.setTimeout(60000);
 
   // Variable Initialization
   const fuelUtils = new FuelUtils(page);
@@ -34,7 +34,7 @@ test('All Operations', async ({ page }) => {
   // End //  // Campaign Operations //
   await page.locator('div:nth-child(5) > #mapMaint > img').click();
   await campaignUtils.checkAndCreateEcoFriendlyCampaign();
-  
+
   // Check and create airline reputation campaign after eco-friendly check
   await campaignUtils.checkAndCreateAirlineReputationCampaign();
 
@@ -44,7 +44,7 @@ test('All Operations', async ({ page }) => {
 
   // Repair Planes if needed //
   await page.locator('div:nth-child(4) > #mapMaint > img').click();
-  
+
   await maintenanceUtils.checkPlanes();
   await GeneralUtils.sleep(1000);
   await maintenanceUtils.repairPlanes();
@@ -58,17 +58,6 @@ test('All Operations', async ({ page }) => {
 
   await fleetUtils.departPlanes();
   // End //
-
-  // Fetch all planes and write to JSON
-  try {
-    console.log('Starting to fetch all planes...');
-    const planes = await fleetUtils.getAllPlanes();
-    console.log(`Successfully fetched ${planes.length} planes`);
-    fs.writeFileSync('planes.json', JSON.stringify(planes, null, 2));
-    console.log('Planes data written to planes.json');
-  } catch (error) {
-    console.error('Error while fetching planes data:', error);
-  }
 
   page.close();
 });
