@@ -4,11 +4,12 @@ import { FuelUtils } from '../utils/01_fuel.utils';
 import { CampaignUtils } from '../utils/02_campaign.utils';
 import { FleetUtils } from '../utils/04_fleet.utils';
 import { MaintenanceUtils } from '../utils/03_maintenance.utils';
+import * as fs from 'fs';
 
 require('dotenv').config();
 
 test('All Operations', async ({ page }) => {
-  test.setTimeout(60000);
+  test.setTimeout(180000); // Increased timeout to 3 minutes to handle pagination
 
   // Variable Initialization
   const fuelUtils = new FuelUtils(page);
@@ -51,13 +52,23 @@ test('All Operations', async ({ page }) => {
 
   await page.locator('#popup > .modal-dialog > .modal-content > .modal-header > div > .glyphicons').click();
   // End //
-
   // Depart Planes Operations //
   await page.locator('#mapRoutes').getByRole('img').click();
   await GeneralUtils.sleep(2500);
 
   await fleetUtils.departPlanes();
   // End //
+
+  // Fetch all planes and write to JSON
+  try {
+    console.log('Starting to fetch all planes...');
+    const planes = await fleetUtils.getAllPlanes();
+    console.log(`Successfully fetched ${planes.length} planes`);
+    fs.writeFileSync('planes.json', JSON.stringify(planes, null, 2));
+    console.log('Planes data written to planes.json');
+  } catch (error) {
+    console.error('Error while fetching planes data:', error);
+  }
 
   page.close();
 });
