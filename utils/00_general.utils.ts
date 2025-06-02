@@ -5,9 +5,12 @@ require('dotenv').config();
 export class GeneralUtils {
     username : string;
     password : string;
-    page : Page;
-
-    constructor(page : Page) {
+    page : Page;    constructor(page : Page) {
+        if (!process.env.EMAIL || !process.env.PASSWORD) {
+            console.error('ERROR: Umgebungsvariablen EMAIL oder PASSWORD fehlen!');
+            console.log('process.env.EMAIL:', process.env.EMAIL ? 'Vorhanden' : 'Fehlt');
+            console.log('process.env.PASSWORD:', process.env.PASSWORD ? 'Vorhanden' : 'Fehlt');
+        }
         this.username = process.env.EMAIL!;
         this.password = process.env.PASSWORD!;
         this.page = page;
