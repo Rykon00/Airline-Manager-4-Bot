@@ -53,7 +53,9 @@ export class FetchPlanesUtils {
                 console.log(`Processing route list page ${currentPage}...`);
                 const rowsLocator = this.page.locator('div[id^="routeMainList"] > div');
                 const rowCount = await rowsLocator.count();
-                console.log(`Found ${rowCount} route rows on page ${currentPage}.`);                for (let i = 0; i < rowCount; i++) {
+                console.log(`Found ${rowCount} route rows on page ${currentPage}.`);                // Limit processing to first 20 rows or less if there are fewer rows
+                const maxRowsToProcess = Math.min(rowCount, 20);
+                for (let i = 0; i < maxRowsToProcess; i++) {
                     try {
                         const row = rowsLocator.nth(i);
                         
@@ -62,7 +64,7 @@ export class FetchPlanesUtils {
                         const detailLinkElement = row.locator('.detail-link');
                         
                         // Log for debugging
-                        console.log(`Processing row ${i+1}/${rowCount}`);
+                        console.log(`Processing row ${i+1}/${maxRowsToProcess}`);
                         
                         // Check if elements are visible
                         const planeIdVisible = await planeIdElement.isVisible().catch(() => false);
@@ -80,12 +82,80 @@ export class FetchPlanesUtils {
                         const planeId = planeIdVisible ? await planeIdElement.textContent() : null;
                         const detailPageUrl = detailLinkVisible ? await detailLinkElement.getAttribute('href') : null;
                         
+                        // Create base plane info
                         const planeInfo: Partial<PlaneInfo> = {
                             planeId,
                             detailPageUrl
                         };
                         
+                        // Open detail page if link is available
+                        if (detailPageUrl && detailLinkVisible) {
+                            console.log(`Opening detail page for plane ${planeId || 'unknown'}: ${detailPageUrl}`);
+                            
+                            // Get the actual link element to click
+                            const detailLink = row.locator('.detail-link');
+                            
+                            // Click on the detail link to open the page
+                            await detailLink.click();
+                            
+                            // Wait for detail page to load
+                            await GeneralUtils.sleep(2000);
+                            
+                            // Extract additional information from detail page
+                            const detailContainer = this.page.locator('div.modal-body');
+                            
+                            // Wait for container to be visible
+                            await detailContainer.waitFor({ state: 'visible', timeout: 5000 }).catch(() => {
+                                console.log(`Detail page container not visible for plane ${planeId || 'unknown'}`);
+                            });
+                            
+                            // Extract data if container is visible
+                            if (await detailContainer.isVisible()) {
+                                try {
+                                    // Extract aircraft type
+                                    const aircraftType = await this.getTextFromDivLabel(detailContainer, 'Aircraft:');
+                                    planeInfo.aircraftType = aircraftType;
+                                    
+                                    // Extract delivered date
+                                    const delivered = await this.getTextFromDivLabel(detailContainer, 'Delivered:');
+                                    planeInfo.delivered = delivered;
+                                    
+                                    // Extract hours to check
+                                    const hoursToCheck = await this.getTextFromDivLabel(detailContainer, 'Hours to check:');
+                                    planeInfo.hoursToCheck = hoursToCheck;
+                                    
+                                    // Extract range
+                                    const range = await this.getTextFromDivLabel(detailContainer, 'Range:');
+                                    planeInfo.range = range;
+                                    
+                                    // Extract flight hours/cycles
+                                    const flightHoursCycles = await this.getTextFromDivLabel(detailContainer, 'Flight hours/cycles:');
+                                    planeInfo.flightHoursCycles = flightHoursCycles;
+                                    
+                                    // Extract min runway
+                                    const minRunway = await this.getTextFromDivLabel(detailContainer, 'Min. runway:');
+                                    planeInfo.minRunway = minRunway;
+                                    
+                                    // Extract wear
+                                    const wear = await this.getTextFromDivLabel(detailContainer, 'Wear:');
+                                    planeInfo.wear = wear;
+                                    
+                                    console.log(`Successfully extracted details for plane ${planeId || 'unknown'}`);
+                                } catch (error) {
+                                    console.error(`Error extracting details from modal for plane ${planeId || 'unknown'}:`, error);
+                                }
+                                
+                                // Close the detail modal
+                                const closeButton = this.page.locator('#popup .modal-header .glyphicons.icon-remove');
+                                await closeButton.click().catch(() => console.log('Could not click close button'));
+                                await GeneralUtils.sleep(500);
+                            }
+                        }
+                        
                         allPlanesData.push(planeInfo as PlaneInfo);
+                        
+                        // Add a small delay between processing rows to avoid overwhelming the site
+                        await GeneralUtils.sleep(500);
                     } catch (error) {
                         console.error(`Error processing row ${i+1}:`, error);
                     }

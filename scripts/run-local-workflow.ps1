@@ -38,15 +38,17 @@ $selectedWorkflow = $workflows[$index]
 Write-Host "Starting $($selectedWorkflow.Display) workflow locally..." -ForegroundColor Green
 
 # Check if .env file exists
-if (-not (Test-Path -Path ".env")) {
+if (-not (Test-Path -Path "../.env")) {
     Write-Host ".env file not found. Please ensure it exists in the root directory." -ForegroundColor Red
     exit 1
 }
 
 # Install dependencies if node_modules doesn't exist
-if (-not (Test-Path -Path "node_modules")) {
+if (-not (Test-Path -Path "../node_modules")) {
     Write-Host "Installing dependencies..." -ForegroundColor Yellow
+    Set-Location -Path ".."
     npm ci
+    Set-Location -Path "scripts"
     if ($LASTEXITCODE -ne 0) {
         Write-Host "Failed to install dependencies." -ForegroundColor Red
         exit 1
@@ -55,7 +57,9 @@ if (-not (Test-Path -Path "node_modules")) {
 
 # Install Playwright browsers if needed
 Write-Host "Installing Playwright browsers..." -ForegroundColor Yellow
+Set-Location -Path ".."
 npx playwright install --with-deps chromium
+Set-Location -Path "scripts"
 if ($LASTEXITCODE -ne 0) {
     Write-Host "Failed to install Playwright browsers." -ForegroundColor Red
     exit 1
@@ -63,6 +67,7 @@ if ($LASTEXITCODE -ne 0) {
 
 # Run the selected test
 Write-Host "Running $($selectedWorkflow.Display)..." -ForegroundColor Green
+Set-Location -Path ".."
 $command = "npx playwright test tests/$($selectedWorkflow.Test) --reporter=list"
 
 # Add headed mode if requested
@@ -73,8 +78,10 @@ if ($headed) {
 
 # Execute the command
 Invoke-Expression $command
+$testExitCode = $LASTEXITCODE
+Set-Location -Path "scripts"
 
-if ($LASTEXITCODE -ne 0) {
+if ($testExitCode -ne 0) {
     Write-Host "$($selectedWorkflow.Display) test encountered errors." -ForegroundColor Red
     exit 1
 }
@@ -82,18 +89,22 @@ if ($LASTEXITCODE -ne 0) {
 # Special handling for fetchPlanes workflow (git operations)
 if ($selectedWorkflow.Name -eq "02_fetchPlanes") {
     Write-Host "Checking for changes in planes data..." -ForegroundColor Yellow
+    Set-Location -Path ".."
     $gitStatus = git status --porcelain planes.json
-    
-    if ($gitStatus) {
+    Set-Location -Path "scripts"
+      if ($gitStatus) {
         Write-Host "Changes detected in planes data, committing..." -ForegroundColor Yellow
+        Set-Location -Path ".."
         git config --global user.name 'Local Script'
         git config --global user.email 'local@example.com'
         git add planes.json
         git commit -m "Update planes data - $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
-        
-        $pushConfirmation = Read-Host "Do you want to push changes to remote repository? (y/n)"
+        Set-Location -Path "scripts"
+          $pushConfirmation = Read-Host "Do you want to push changes to remote repository? (y/n)"
         if ($pushConfirmation -eq "y") {
+            Set-Location -Path ".."
             git push
+            Set-Location -Path "scripts"
             Write-Host "Changes pushed to repository." -ForegroundColor Green
         } else {
             Write-Host "Changes committed locally but not pushed." -ForegroundColor Yellow
