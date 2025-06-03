@@ -6,6 +6,12 @@ param(
     [switch]$headed = $false
 )
 
+# Check if --headed was used as a literal argument (PowerShell sometimes doesn't recognize switch parameters correctly)
+$headedArg = $MyInvocation.BoundParameters.ContainsKey('headed') -or $args -contains '--headed'
+if ($headedArg) {
+    $headed = $true
+}
+
 # Workflow selection
 $workflows = @(
     @{Name = "01_airlineManager"; Display = "Airline Manager Bot"; Test = "airlineManager.spec.ts"},
