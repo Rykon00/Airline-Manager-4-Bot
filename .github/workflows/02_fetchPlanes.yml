@@ -1,0 +1,48 @@
+name: Fetch Planes Data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */12 * * *' # Run every 12 hours
+
+jobs:
+  fetch-planes:
+    timeout-minutes: 10
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json') }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+      - name: Create .env file
+        run: |
+          touch .env
+          echo "EMAIL=${{ secrets.EMAIL }}" >> .env
+          echo "PASSWORD=${{ secrets.PASSWORD }}" >> .env
+          echo "MAX_FUEL_PRICE=${{ vars.MAX_FUEL_PRICE }}" >> .env
+          echo "MAX_CO2_PRICE=${{ vars.MAX_CO2_PRICE }}" >> .env
+      - name: Run Fetch Planes Test
+        run: npx playwright test tests/fetchPlanes.spec.ts --reporter=list
+      - name: Commit and push if there are changes
+        run: |
+          git config --global user.name 'GitHub Actions Bot'
+          git config --global user.email 'actions@github.com'
+          git add planes.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update planes data - $(date)"
+          git push
+      
+      - name: Upload planes.json as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: planes-data
+          path: |
+            planes.json
+            planes_*.json
