@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: Airline Manager Operations
 on:
   workflow_dispatch:
   schedule:
@@ -27,5 +27,5 @@ jobs:
           echo "PASSWORD=${{ secrets.PASSWORD }}" >> .env
           echo "MAX_FUEL_PRICE=${{ vars.MAX_FUEL_PRICE }}" >> .env
           echo "MAX_CO2_PRICE=${{ vars.MAX_CO2_PRICE }}" >> .env
-      - name: Run Playwright tests
-        run: npx playwright test --grep-invert="Fetch All Planes"
+      - name: Run Airline Manager Bot
+        run: npx playwright test tests/airlineManager.spec.ts
