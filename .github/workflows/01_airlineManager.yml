@@ -1,4 +1,4 @@
-name: Airline Manager Operations
+name: Airline Manager Bot
 on:
   workflow_dispatch:
   schedule:
@@ -28,4 +28,4 @@ jobs:
           echo "MAX_FUEL_PRICE=${{ vars.MAX_FUEL_PRICE }}" >> .env
           echo "MAX_CO2_PRICE=${{ vars.MAX_CO2_PRICE }}" >> .env
       - name: Run Airline Manager Bot
-        run: npx playwright test tests/airlineManager.spec.ts
+        run: npx playwright test tests/airlineManager.spec.ts --reporter=list

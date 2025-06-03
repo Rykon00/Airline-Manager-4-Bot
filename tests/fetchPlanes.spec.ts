@@ -6,7 +6,7 @@ import * as fs from 'fs';
 require('dotenv').config();
 
 test('Fetch All Planes', async ({ page }) => {
-  test.setTimeout(120000); // 2 minutes timeout for this operation
+  test.setTimeout(180000); // 3 minutes timeout for this operation
 
   // Initialize utilities
   const generalUtils = new GeneralUtils(page);

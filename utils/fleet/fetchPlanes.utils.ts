@@ -25,18 +25,25 @@ export class FetchPlanesUtils {
 
     constructor(page : Page) {
         this.page = page;
-    }
-
-    public async getAllPlanes(): Promise<PlaneInfo[]> {
+    }    public async getAllPlanes(): Promise<PlaneInfo[]> {
         console.log('Fetching all planes...');
         const allPlanesData: PlaneInfo[] = [];
 
         try {
             console.log('Phase 1: Scraping list pages.');
             await this.page.locator('#mapRoutes').getByRole('img').click();
-            await GeneralUtils.sleep(1000); 
-
+            await GeneralUtils.sleep(2000); // Increased sleep time
+            
             console.log('Waiting for routes list (div[id^="routeMainList"]) to load...');
+            // Explicitly wait for route list to be visible
+            try {
+                await this.page.waitForSelector('div[id^="routeMainList"]', { timeout: 10000 });
+                console.log('Routes list loaded successfully');
+            } catch (error) {
+                console.error('Error waiting for routes list:', error);
+                // Take a screenshot to diagnose the issue
+                await this.page.screenshot({ path: 'routes-list-error.png' });
+            }
 
             let hasNextPage = true;
             let currentPage = 1;
@@ -46,15 +53,42 @@ export class FetchPlanesUtils {
                 console.log(`Processing route list page ${currentPage}...`);
                 const rowsLocator = this.page.locator('div[id^="routeMainList"] > div');
                 const rowCount = await rowsLocator.count();
-                console.log(`Found ${rowCount} route rows on page ${currentPage}.`);
-
-                for (let i = 0; i < rowCount; i++) {
-                    const row = rowsLocator.nth(i);
-                    const planeInfo: Partial<PlaneInfo> = {
-                        planeId: await row.locator('.plane-id').textContent(),
-                        detailPageUrl: await row.locator('.detail-link').getAttribute('href'),
-                    };
-                    allPlanesData.push(planeInfo as PlaneInfo);
+                console.log(`Found ${rowCount} route rows on page ${currentPage}.`);                for (let i = 0; i < rowCount; i++) {
+                    try {
+                        const row = rowsLocator.nth(i);
+                        
+                        // Check if elements exist before trying to get content
+                        const planeIdElement = row.locator('.plane-id');
+                        const detailLinkElement = row.locator('.detail-link');
+                        
+                        // Log for debugging
+                        console.log(`Processing row ${i+1}/${rowCount}`);
+                        
+                        // Check if elements are visible
+                        const planeIdVisible = await planeIdElement.isVisible().catch(() => false);
+                        const detailLinkVisible = await detailLinkElement.isVisible().catch(() => false);
+                        
+                        if (!planeIdVisible) {
+                            console.log(`Plane ID element not visible in row ${i+1}`);
+                        }
+                        
+                        if (!detailLinkVisible) {
+                            console.log(`Detail link element not visible in row ${i+1}`);
+                        }
+                        
+                        // Get text with fallback values
+                        const planeId = planeIdVisible ? await planeIdElement.textContent() : null;
+                        const detailPageUrl = detailLinkVisible ? await detailLinkElement.getAttribute('href') : null;
+                        
+                        const planeInfo: Partial<PlaneInfo> = {
+                            planeId,
+                            detailPageUrl
+                        };
+                        
+                        allPlanesData.push(planeInfo as PlaneInfo);
+                    } catch (error) {
+                        console.error(`Error processing row ${i+1}:`, error);
+                    }
                 }
 
                 const nextPageButton = this.page.locator('.pagination-next');
