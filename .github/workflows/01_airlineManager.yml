@@ -9,6 +9,25 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
+
+      - name: Download previous price history
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v3
+        with:
+          workflow: 01_airlineManager.yml
+          name: price-history
+          path: .
+          if_no_artifact_found: warn
+
+      - name: Verify price history exists
+        run: |
+          if [ -f "price-history.json" ]; then
+            echo "✅ Price history loaded from previous run"
+            cat price-history.json | head -20
+          else
+            echo "📝 No previous price history found - will create new one"
+          fi
+
       - uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
@@ -31,7 +50,9 @@ jobs:
       - name: Run Airline Manager Bot
         run: npx playwright test tests/airlineManager.spec.ts --reporter=list
       - name: Upload price history as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: price-history
           path: price-history.json
+          retention-days: 90

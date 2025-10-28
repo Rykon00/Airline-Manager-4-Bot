@@ -110,12 +110,9 @@ export class FuelUtils {
                 await this.page.getByPlaceholder('Amount to purchase').fill(purchaseAmount);
                 await this.page.getByRole('button', { name: ' Purchase' }).click();
 
-                // Record successful purchase in history
-                this.priceAnalytics.addPriceEntry('fuel', curFuelPrice);
                 console.log(`✅ Fuel purchased successfully! Amount: ${parseInt(purchaseAmount).toLocaleString()} L at $${curFuelPrice}/L`);
+                // TODO: Add to purchase log (not price history!)
             } else {
-                // Record price observation (no purchase)
-                this.priceAnalytics.addPriceEntry('fuel', curFuelPrice);
                 console.log('⏸️ Skipping fuel purchase - waiting for better price');
             }
 
@@ -213,12 +210,9 @@ export class FuelUtils {
                 await this.page.getByPlaceholder('Amount to purchase').fill(purchaseAmount);
                 await this.page.getByRole('button', { name: ' Purchase' }).click();
 
-                // Record successful purchase in history
-                this.priceAnalytics.addPriceEntry('co2', curCo2Price);
                 console.log(`✅ CO2 purchased successfully! Amount: ${parseInt(purchaseAmount).toLocaleString()} kg at $${curCo2Price}/kg`);
+                // TODO: Add to purchase log (not price history!)
             } else {
-                // Record price observation (no purchase)
-                this.priceAnalytics.addPriceEntry('co2', curCo2Price);
                 console.log('⏸️ Skipping CO2 purchase - waiting for better price');
             }
 

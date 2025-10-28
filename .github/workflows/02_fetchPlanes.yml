@@ -11,6 +11,25 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
+
+      - name: Download previous planes data
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v3
+        with:
+          workflow: 02_fetchPlanes.yml
+          name: planes-data
+          path: .
+          if_no_artifact_found: warn
+
+      - name: Verify planes data exists
+        run: |
+          if [ -f "planes.json" ]; then
+            echo "✅ Planes data loaded from previous run"
+            echo "File size: $(wc -c < planes.json) bytes"
+          else
+            echo "📝 No previous planes data found - will create new one"
+          fi
+
       - uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
@@ -31,18 +50,13 @@ jobs:
           echo "MAX_CO2_PRICE=${{ vars.MAX_CO2_PRICE }}" >> .env
       - name: Run Fetch Planes Test
         run: npx playwright test tests/fetchPlanes.spec.ts --reporter=list
-      - name: Commit and push if there are changes
-        run: |
-          git config --global user.name 'GitHub Actions Bot'
-          git config --global user.email 'actions@github.com'
-          git add planes.json
-          git diff --quiet && git diff --staged --quiet || git commit -m "Update planes data - $(date)"
-          git push
-      
+
       - name: Upload planes.json as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: planes-data
           path: |
             planes.json
             planes_*.json
+          retention-days: 90
