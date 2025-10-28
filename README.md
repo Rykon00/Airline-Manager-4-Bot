@@ -4,11 +4,16 @@ This repository contains a bot for Airline Manager 4, built with Playwright and 
 ## Features
 
 ### Implemented
-- Start an eco-friendly campaign if not already started.
-- Buy fuel and CO2 if prices are below specified thresholds.
-- Depart all planes.
-- Schedule repairs and A-Checks if needed.
-- Buy fuel and CO2 at higher prices if supplies are nearly finished.
+- **Intelligent Price Analysis**: Historical price tracking and statistical analysis for optimal buying decisions
+  - 24h/7d price averages, min/max tracking
+  - Trend detection (rising/falling/stable)
+  - Smart buy recommendations (only purchase if price < 85% of 24h average)
+  - Detailed price reports with confidence levels
+- **Fuel & CO2 Management**: Automated purchase with intelligent decision-making
+- **Campaign Management**: Auto-start eco-friendly and airline reputation campaigns
+- **Maintenance**: Automatic repairs and A-Checks scheduling
+- **Fleet Operations**: Depart all ready planes automatically
+- **Emergency Purchases**: Buy at higher prices when supplies are critically low
 
 ## Usage Instructions
 

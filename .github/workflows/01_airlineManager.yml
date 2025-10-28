@@ -27,5 +27,11 @@ jobs:
           echo "PASSWORD=${{ secrets.PASSWORD }}" >> .env
           echo "MAX_FUEL_PRICE=${{ vars.MAX_FUEL_PRICE }}" >> .env
           echo "MAX_CO2_PRICE=${{ vars.MAX_CO2_PRICE }}" >> .env
+          echo "TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}" >> .env
       - name: Run Airline Manager Bot
         run: npx playwright test tests/airlineManager.spec.ts --reporter=list
+      - name: Upload price history as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: price-history
+          path: price-history.json
