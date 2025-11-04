@@ -2,7 +2,8 @@ name: Airline Manager Bot
 on:
   workflow_dispatch:
   schedule:
-    - cron: "01,31 * * * *"
+    - cron: "01,31 * * * *"  # Every 30 minutes (bot run + incremental update)
+    - cron: "0 3 * * *"      # Daily at 3am (full scan)
 jobs:
   test:
     timeout-minutes: 10
@@ -10,22 +11,43 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Create data directory
+        run: mkdir -p data
+
       - name: Download previous price history
-        id: download-artifact
+        id: download-price-artifact
         uses: dawidd6/action-download-artifact@v3
         with:
           workflow: 01_airlineManager.yml
           name: price-history
-          path: .
+          path: data
           if_no_artifact_found: warn
 
       - name: Verify price history exists
         run: |
-          if [ -f "price-history.json" ]; then
+          if [ -f "data/price-history.json" ]; then
             echo "✅ Price history loaded from previous run"
-            cat price-history.json | head -20
+            cat data/price-history.json | head -20
           else
             echo "📝 No previous price history found - will create new one"
+          fi
+
+      - name: Download previous planes data
+        id: download-planes-artifact
+        uses: dawidd6/action-download-artifact@v3
+        with:
+          workflow: 01_airlineManager.yml
+          name: planes-data
+          path: data
+          if_no_artifact_found: warn
+
+      - name: Verify planes data exists
+        run: |
+          if [ -f "data/planes.json" ]; then
+            echo "✅ Planes data loaded from previous run"
+            echo "Number of planes: $(cat data/planes.json | jq '. | length')"
+          else
+            echo "📝 No previous planes data found - will create on next full scan"
           fi
 
       - uses: actions/cache@v4
@@ -48,11 +70,38 @@ jobs:
           echo "MAX_CO2_PRICE=${{ vars.MAX_CO2_PRICE }}" >> .env
           echo "TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}" >> .env
       - name: Run Airline Manager Bot
+        if: github.event.schedule != '0 3 * * *'
         run: npx playwright test tests/airlineManager.spec.ts --reporter=list
+
+      - name: Update started planes (incremental)
+        if: github.event.schedule != '0 3 * * *'
+        run: npx playwright test tests/updateStartedPlanes.spec.ts --reporter=list
+
+      - name: Full plane scan (daily at 3am)
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 3 * * *'
+        run: npx playwright test tests/fetchPlanes.spec.ts --reporter=list
+
       - name: Upload price history as artifact
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: price-history
-          path: price-history.json
+          path: data/price-history.json
           retention-days: 90
+
+      - name: Upload planes data as artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: planes-data
+          path: data/planes.json
+          retention-days: 90
+
+      - name: Upload started flights tracking (debug)
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: started-flights
+          path: started-flights.json
+          retention-days: 7
+          if-no-files-found: ignore

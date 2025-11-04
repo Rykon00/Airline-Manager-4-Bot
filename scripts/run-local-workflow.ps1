@@ -83,13 +83,13 @@ if ($testExitCode -ne 0) {
 # Special handling for fetchPlanes workflow (git operations)
 if ($selectedWorkflow.Name -eq "02_fetchPlanes") {
     Write-Host "Checking for changes in planes data..." -ForegroundColor Yellow
-    $gitStatus = git status --porcelain planes.json
-      
+    $gitStatus = git status --porcelain data/planes.json
+
     if ($gitStatus) {
         Write-Host "Changes detected in planes data, committing..." -ForegroundColor Yellow
         git config --global user.name 'Local Script'
         git config --global user.email 'local@example.com'
-        git add planes.json
+        git add data/planes.json
         git commit -m "Update planes data - $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
           
         $pushConfirmation = Read-Host "Do you want to push changes to remote repository? (y/n)"

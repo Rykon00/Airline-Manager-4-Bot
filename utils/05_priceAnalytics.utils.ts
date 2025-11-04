@@ -43,7 +43,7 @@ export class PriceAnalyticsUtils {
   private maxHistoryEntries: number;
 
   constructor(maxHistoryEntries: number = 200) {
-    this.historyFilePath = path.join(process.cwd(), 'price-history.json');
+    this.historyFilePath = path.join(process.cwd(), 'data', 'price-history.json');
     this.maxHistoryEntries = maxHistoryEntries;
   }
 

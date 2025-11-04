@@ -1,7 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx ts-node:*)"
+      "Bash(npx ts-node:*)",
+      "Bash(npm test:*)",
+      "Bash(tee:*)",
+      "Bash(cat:*)",
+      "Bash(pkill:*)",
+      "Bash(echo:*)",
+      "Read(//c/Users/meine/AppData/Roaming/Code/User/profiles/301df366/**)"
     ],
     "deny": [],
     "ask": []

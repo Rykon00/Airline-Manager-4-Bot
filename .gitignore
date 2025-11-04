@@ -4,6 +4,14 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 .env
+
+# Data directory - all generated data files
+/data/
+
+# Legacy files (if any still exist in root)
 cookies.json
 planes.json
 price-history.json
+
+# Log files
+*.log
