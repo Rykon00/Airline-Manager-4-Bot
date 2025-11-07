@@ -7,6 +7,7 @@ node_modules/
 
 # Data directory - all generated data files
 /data/
+/screenshots/
 
 # Legacy files (if any still exist in root)
 cookies.json
