@@ -23,15 +23,15 @@ interface FlightHistory {
 interface PlaneInfo {
     fleetId: string | null;
     registration: string | null;
-    detailPageUrl: string | null;
     rawRouteText: string | null;
     aircraftType: string | null;
     delivered: string | null;
-    hoursToCheck: string | null;
-    range: string | null;
-    flightHoursCycles: string | null;
-    minRunway: string | null;
-    wear: string | null;
+    hoursToCheck: number | null;      // ✅ Zahl: 50 (Stunden bis Check)
+    rangeKm: number | null;            // ✅ Zahl: 2036 (Reichweite in km)
+    flightHours: number | null;       // ✅ Zahl: 3625 (Flugstunden)
+    flightCycles: number | null;      // ✅ Zahl: 719 (Flugzyklen)
+    minRunwayFt: number | null;       // ✅ Zahl: 2000 (Minimale Landebahn in ft)
+    wearPercent: number | null;       // ✅ Zahl: 30.41 (Abnutzung in Prozent)
     planeType: string | null;
     departureAirport: string | null;
     arrivalAirport: string | null;
@@ -141,7 +141,6 @@ export class UpdatePlanesUtils {
                 const registration = await planeIdElement.textContent().catch(() => null);
                 const row = planeIdElement.locator('xpath=ancestor::div[contains(@id, "routeMainList")]').first();
                 const detailLink = row.locator('a').first();
-                const detailPageUrl = await detailLink.getAttribute('href').catch(() => null);
 
                 // Click to open details
                 console.log(`Opening details for ${registration}...`);
@@ -152,26 +151,29 @@ export class UpdatePlanesUtils {
                 const detailContainer = this.page.locator('#detailsAction');
                 await detailContainer.waitFor({ state: 'visible', timeout: 5000 });
 
-                // Extract basic info
-                const aircraftType = await this.getTextFromDivLabel(detailContainer, 'Aircraft:');
-                const delivered = await this.getTextFromDivLabel(detailContainer, 'Delivered:');
-                const hoursToCheck = await this.getTextFromDivLabel(detailContainer, 'Hours to check:');
-                const range = await this.getTextFromDivLabel(detailContainer, 'Range:');
-                const flightHoursCycles = await this.getTextFromDivLabel(detailContainer, 'Flight hours/cycles:');
-                const minRunway = await this.getTextFromDivLabel(detailContainer, 'Min. runway:');
-                const wear = await this.getTextFromDivLabel(detailContainer, 'Wear:');
+                // Extract basic info (NO COLONS!) and parse to proper types
+                const aircraftType = await this.getDetailValue(detailContainer, 'Aircraft');
+                const delivered = await this.getDetailValue(detailContainer, 'Delivered');
+                const hoursToCheckStr = await this.getDetailValue(detailContainer, 'Hours to check');
+                const rangeStr = await this.getDetailValue(detailContainer, 'Range');
+                const flightHoursCyclesStr = await this.getDetailValue(detailContainer, 'Flight hours/Cycles');
+                const minRunwayStr = await this.getDetailValue(detailContainer, 'Min runway');
+                const wearStr = await this.getDetailValue(detailContainer, 'Wear');
+
+                // Parse values to numbers
+                const parsedHoursCycles = this.parseFlightHoursCycles(flightHoursCyclesStr);
 
                 return {
                     fleetId,
                     registration,
-                    detailPageUrl,
                     aircraftType,
                     delivered,
-                    hoursToCheck,
-                    range,
-                    flightHoursCycles,
-                    minRunway,
-                    wear,
+                    hoursToCheck: this.parseNumber(hoursToCheckStr),
+                    rangeKm: this.parseRangeKm(rangeStr),
+                    flightHours: parsedHoursCycles.hours,
+                    flightCycles: parsedHoursCycles.cycles,
+                    minRunwayFt: this.parseRunwayFt(minRunwayStr),
+                    wearPercent: this.parsePercent(wearStr),
                     rawRouteText: null,
                     planeType: null,
                     departureAirport: null,
@@ -267,19 +269,57 @@ export class UpdatePlanesUtils {
 
     /**
      * Goes back to the plane list from detail view
+     * 1. Click white X button in popup to close it
+     * 2. Click back in sidebar to return to categorized overview
      */
     private async goBackToList(): Promise<void> {
-        const detailContainer = this.page.locator('#detailsAction');
-        const backButton = detailContainer.locator('span.glyphicons-chevron-left').first();
+        try {
+            // Step 1: Click the white X button to close the popup window
+            console.log('Closing popup window via X button...');
 
-        if (await backButton.count() > 0) {
-            console.log('Clicking back arrow...');
-            await backButton.click();
-        } else {
-            console.log('Back arrow not found, pressing ESC...');
-            await this.page.keyboard.press('Escape');
+            // The close button is in #popup > .modal-header > .glyphicons-remove
+            const closeButton = this.page.locator('#popup .modal-header .glyphicons-remove').first();
+
+            if (await closeButton.count() > 0) {
+                await closeButton.click();
+                await GeneralUtils.sleep(500);
+                console.log('✅ Popup closed via X button');
+            } else {
+                console.log('⚠️ Close button (X) not found with selector #popup .modal-header .glyphicons-remove');
+                // Fallback: Try other possible selectors
+                const altCloseButton = this.page.locator('#popup .glyphicons-remove').first();
+                if (await altCloseButton.count() > 0) {
+                    await altCloseButton.click();
+                    await GeneralUtils.sleep(500);
+                    console.log('✅ Popup closed via fallback selector');
+                } else {
+                    console.log('❌ Could not find close button!');
+                }
+            }
+
+            // Step 2: Click back in sidebar to return to categorized overview
+            console.log('Clicking back in sidebar...');
+            // The "List" button has classes: .nudgeBtn.btn-block.btn-secondary.btn-xs
+            const sidebarBackButton = this.page.locator('button.nudgeBtn.btn-secondary:has-text("List")').first();
+            if (await sidebarBackButton.count() > 0) {
+                await sidebarBackButton.click();
+                await GeneralUtils.sleep(500);
+                console.log('✅ Returned to categorized overview');
+            } else {
+                console.log('⚠️ Sidebar "List" button not found - trying fallback...');
+                // Fallback: Try generic button selector
+                const fallbackButton = this.page.locator('button.btn-secondary:has-text("List"), button:has-text("List")').first();
+                if (await fallbackButton.count() > 0) {
+                    await fallbackButton.click();
+                    await GeneralUtils.sleep(500);
+                    console.log('✅ Returned to categorized overview (fallback)');
+                } else {
+                    console.log('❌ Could not find List button!');
+                }
+            }
+        } catch (err) {
+            console.error('Error going back to list:', err);
         }
-        await GeneralUtils.sleep(500);
     }
 
     /**
@@ -290,9 +330,10 @@ export class UpdatePlanesUtils {
 
         // Update basic fields if they changed
         if (newData.registration) merged.registration = newData.registration;
-        if (newData.wear) merged.wear = newData.wear;
-        if (newData.hoursToCheck) merged.hoursToCheck = newData.hoursToCheck;
-        if (newData.flightHoursCycles) merged.flightHoursCycles = newData.flightHoursCycles;
+        if (newData.wearPercent !== null && newData.wearPercent !== undefined) merged.wearPercent = newData.wearPercent;
+        if (newData.hoursToCheck !== null && newData.hoursToCheck !== undefined) merged.hoursToCheck = newData.hoursToCheck;
+        if (newData.flightHours !== null && newData.flightHours !== undefined) merged.flightHours = newData.flightHours;
+        if (newData.flightCycles !== null && newData.flightCycles !== undefined) merged.flightCycles = newData.flightCycles;
 
         // Merge flight history intelligently
         if (newData.flightHistory && newData.flightHistory.length > 0) {
@@ -398,35 +439,77 @@ export class UpdatePlanesUtils {
         return isNaN(num) ? null : num;
     }
 
-    private async getTextFromDivLabel(container: Locator, labelWithColon: string): Promise<string | null> {
+    // ✅ Helper: Parse Range mit Einheit (z.B. "2,036km" → 2036)
+    private parseRangeKm(str: string | null): number | null {
+        if (!str) return null;
+        const cleaned = str.replace(/[^0-9.-]/g, ''); // Entferne Kommas und "km"
+        const num = parseFloat(cleaned);
+        return isNaN(num) ? null : num;
+    }
+
+    // ✅ Helper: Parse Runway mit Einheit (z.B. "2,000ft" → 2000)
+    private parseRunwayFt(str: string | null): number | null {
+        if (!str) return null;
+        const cleaned = str.replace(/[^0-9.-]/g, ''); // Entferne Kommas und "ft"
+        const num = parseFloat(cleaned);
+        return isNaN(num) ? null : num;
+    }
+
+    // ✅ Helper: Parse Prozent (z.B. "30.41%" → 30.41)
+    private parsePercent(str: string | null): number | null {
+        if (!str) return null;
+        const cleaned = str.replace('%', '').trim();
+        const num = parseFloat(cleaned);
+        return isNaN(num) ? null : num;
+    }
+
+    // ✅ Helper: Parse Flight Hours/Cycles (z.B. "3625 / 719" → { hours: 3625, cycles: 719 })
+    private parseFlightHoursCycles(str: string | null): { hours: number | null, cycles: number | null } {
+        if (!str) return { hours: null, cycles: null };
+        const parts = str.split('/').map(p => p.trim());
+        const hours = parts[0] ? parseInt(parts[0]) : null;
+        const cycles = parts[1] ? parseInt(parts[1]) : null;
+        return {
+            hours: isNaN(hours as any) ? null : hours,
+            cycles: isNaN(cycles as any) ? null : cycles
+        };
+    }
+
+    // ✅ NEW: Extract detail value from span-based structure (without colons in labels)
+    private async getDetailValue(
+        container: Locator,
+        labelText: string
+    ): Promise<string | null> {
         try {
-            const labelHostingDivLocator = container.locator('div').filter({ hasText: labelWithColon }).first();
+            // Find label span (without colon)
+            const labelSpan = container
+                .locator(`span.s-text.text-secondary`)
+                .filter({ hasText: labelText })
+                .first();
 
-            if (await labelHostingDivLocator.count() === 0) {
-                return null;
-            }
+            if (await labelSpan.count() === 0) return null;
 
-            let textContent = await labelHostingDivLocator.textContent();
-            if (textContent) {
-                const escapedLabel = labelWithColon.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                const regex = new RegExp(escapedLabel + "\\s*(.+)", "i");
-                const match = textContent.match(regex);
-                if (match && match[1]) {
-                    return match[1].trim();
-                }
-            }
+            // Get parent div
+            const parentDiv = labelSpan.locator('..');
 
-            const nextDivSiblingLocator = labelHostingDivLocator.locator('xpath=./following-sibling::div[1]');
-            if (await nextDivSiblingLocator.count() > 0) {
-                const siblingTextContent = await nextDivSiblingLocator.textContent();
-                if (siblingTextContent) {
-                    return siblingTextContent.trim();
-                }
+            // Collect all labels and values
+            const labels = await parentDiv
+                .locator('span.s-text.text-secondary')
+                .allTextContents();
+            const values = await parentDiv
+                .locator('span.m-text')
+                .allTextContents();
+
+            // Find index
+            const index = labels.findIndex(l => l.trim() === labelText);
+            if (index >= 0 && index < values.length) {
+                return values[index]?.trim() || null;
             }
 
             return null;
-        } catch (e) {
+        } catch {
             return null;
         }
     }
+
 }

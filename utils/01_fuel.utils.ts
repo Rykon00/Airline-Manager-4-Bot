@@ -1,7 +1,6 @@
 import { Page } from "@playwright/test";
 import { PriceAnalyticsUtils } from "./05_priceAnalytics.utils";
-
-require('dotenv').config();
+import { BOT_CONFIG } from "../config";
 
 /**
  * Chart Data Point
@@ -19,8 +18,8 @@ export class FuelUtils {
     private chartsScraped: boolean = false; // Flag to track if charts were already scraped
 
     constructor(page : Page) {
-        this.maxFuelPrice = parseInt(process.env.MAX_FUEL_PRICE!);
-        this.maxCo2Price = parseInt(process.env.MAX_CO2_PRICE!);
+        this.maxFuelPrice = BOT_CONFIG.fuel.maxFuelPrice;
+        this.maxCo2Price = BOT_CONFIG.fuel.maxCo2Price;
         this.page = page;
         this.priceAnalytics = new PriceAnalyticsUtils();
 

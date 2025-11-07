@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
-import { GeneralUtils } from '../utils/00_general.utils';
-import { FetchPlanesUtils } from '../utils/fleet/fetchPlanes.utils';
+import { GeneralUtils } from '../../utils/00_general.utils';
+import { FetchPlanesUtils } from '../../utils/04_fleet.utils';
 import * as fs from 'fs';
 
 require('dotenv').config();

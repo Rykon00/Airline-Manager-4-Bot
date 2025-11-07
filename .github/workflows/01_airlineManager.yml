@@ -66,20 +66,21 @@ jobs:
           touch .env
           echo "EMAIL=${{ secrets.EMAIL }}" >> .env
           echo "PASSWORD=${{ secrets.PASSWORD }}" >> .env
-          echo "MAX_FUEL_PRICE=${{ vars.MAX_FUEL_PRICE }}" >> .env
-          echo "MAX_CO2_PRICE=${{ vars.MAX_CO2_PRICE }}" >> .env
+          echo "MAX_FUEL_PRICE=${{ vars.MAX_FUEL_PRICE || '550' }}" >> .env
+          echo "MAX_CO2_PRICE=${{ vars.MAX_CO2_PRICE || '120' }}" >> .env
+          echo "FLEET_PERCENTAGE=${{ vars.FLEET_PERCENTAGE || '0.10' }}" >> .env
+          echo "FLEET_MIN_DELAY=${{ vars.FLEET_MIN_DELAY || '1000' }}" >> .env
+          echo "FLEET_MAX_DELAY=${{ vars.FLEET_MAX_DELAY || '2000' }}" >> .env
+          echo "FLEET_MOCK_MODE=${{ vars.FLEET_MOCK_MODE || 'false' }}" >> .env
+          echo "MAX_DEPARTURES_OVERRIDE=${{ vars.MAX_DEPARTURES_OVERRIDE || '' }}" >> .env
           echo "TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}" >> .env
       - name: Run Airline Manager Bot
         if: github.event.schedule != '0 3 * * *'
         run: npx playwright test tests/airlineManager.spec.ts --reporter=list
 
-      - name: Update started planes (incremental)
-        if: github.event.schedule != '0 3 * * *'
-        run: npx playwright test tests/updateStartedPlanes.spec.ts --reporter=list
-
       - name: Full plane scan (daily at 3am)
         if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 3 * * *'
-        run: npx playwright test tests/fetchPlanes.spec.ts --reporter=list
+        run: npx playwright test tests/dev/fetchPlanes.spec.ts --reporter=list
 
       - name: Upload price history as artifact
         uses: actions/upload-artifact@v4
@@ -97,11 +98,11 @@ jobs:
           path: data/planes.json
           retention-days: 90
 
-      - name: Upload started flights tracking (debug)
+      - name: Upload Smart Fleet cache as artifact
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: started-flights
-          path: started-flights.json
-          retention-days: 7
+          name: smart-fleet-cache
+          path: data/last-scrape.json
+          retention-days: 90
           if-no-files-found: ignore

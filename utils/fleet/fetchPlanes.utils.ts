@@ -22,15 +22,15 @@ interface FlightHistory {
 interface PlaneInfo {
     fleetId: string | null;           // ✅ EINDEUTIGER IDENTIFIER - ändert sich nie! (z.B. "105960065")
     registration: string | null;       // ✅ REGISTRIERUNG - kann geändert werden (z.B. "LU-002-2")
-    detailPageUrl: string | null;
     rawRouteText: string | null;
     aircraftType: string | null;
     delivered: string | null;
-    hoursToCheck: string | null;
-    range: string | null;
-    flightHoursCycles: string | null;
-    minRunway: string | null;
-    wear: string | null;
+    hoursToCheck: number | null;      // ✅ Zahl: 50 (Stunden bis Check)
+    rangeKm: number | null;            // ✅ Zahl: 2036 (Reichweite in km)
+    flightHours: number | null;       // ✅ Zahl: 3625 (Flugstunden)
+    flightCycles: number | null;      // ✅ Zahl: 719 (Flugzyklen)
+    minRunwayFt: number | null;       // ✅ Zahl: 2000 (Minimale Landebahn in ft)
+    wearPercent: number | null;       // ✅ Zahl: 30.41 (Abnutzung in Prozent)
     planeType: string | null;
     departureAirport: string | null;
     arrivalAirport: string | null;
@@ -59,6 +59,79 @@ export class FetchPlanesUtils {
         const cleaned = str.replace(/[$,]/g, '');
         const num = parseFloat(cleaned);
         return isNaN(num) ? null : num;
+    }
+
+    // ✅ Helper: Parse Range mit Einheit (z.B. "2,036km" → 2036)
+    private parseRangeKm(str: string | null): number | null {
+        if (!str) return null;
+        const cleaned = str.replace(/[^0-9.-]/g, ''); // Entferne Kommas und "km"
+        const num = parseFloat(cleaned);
+        return isNaN(num) ? null : num;
+    }
+
+    // ✅ Helper: Parse Runway mit Einheit (z.B. "2,000ft" → 2000)
+    private parseRunwayFt(str: string | null): number | null {
+        if (!str) return null;
+        const cleaned = str.replace(/[^0-9.-]/g, ''); // Entferne Kommas und "ft"
+        const num = parseFloat(cleaned);
+        return isNaN(num) ? null : num;
+    }
+
+    // ✅ Helper: Parse Prozent (z.B. "30.41%" → 30.41)
+    private parsePercent(str: string | null): number | null {
+        if (!str) return null;
+        const cleaned = str.replace('%', '').trim();
+        const num = parseFloat(cleaned);
+        return isNaN(num) ? null : num;
+    }
+
+    // ✅ Helper: Parse Flight Hours/Cycles (z.B. "3625 / 719" → { hours: 3625, cycles: 719 })
+    private parseFlightHoursCycles(str: string | null): { hours: number | null, cycles: number | null } {
+        if (!str) return { hours: null, cycles: null };
+        const parts = str.split('/').map(p => p.trim());
+        const hours = parts[0] ? parseInt(parts[0]) : null;
+        const cycles = parts[1] ? parseInt(parts[1]) : null;
+        return {
+            hours: isNaN(hours as any) ? null : hours,
+            cycles: isNaN(cycles as any) ? null : cycles
+        };
+    }
+
+    // ✅ NEW: Extract detail value from span-based structure (without colons in labels)
+    private async getDetailValue(
+        container: Locator,
+        labelText: string
+    ): Promise<string | null> {
+        try {
+            // Find label span (without colon)
+            const labelSpan = container
+                .locator(`span.s-text.text-secondary`)
+                .filter({ hasText: labelText })
+                .first();
+
+            if (await labelSpan.count() === 0) return null;
+
+            // Get parent div
+            const parentDiv = labelSpan.locator('..');
+
+            // Collect all labels and values
+            const labels = await parentDiv
+                .locator('span.s-text.text-secondary')
+                .allTextContents();
+            const values = await parentDiv
+                .locator('span.m-text')
+                .allTextContents();
+
+            // Find index
+            const index = labels.findIndex(l => l.trim() === labelText);
+            if (index >= 0 && index < values.length) {
+                return values[index]?.trim() || null;
+            }
+
+            return null;
+        } catch {
+            return null;
+        }
     }
 
     /**
@@ -128,15 +201,12 @@ export class FetchPlanesUtils {
                             }
                         }
 
-                        const detailPageUrl = detailLinkExists ? await detailLinkElement.getAttribute('href').catch(() => null) : null;
-
-                        console.log(`Row ${i+1}: fleetId="${fleetId}", registration="${registration}", url="${detailPageUrl}"`);
+                        console.log(`Row ${i+1}: fleetId="${fleetId}", registration="${registration}"`);
 
                         // Create base plane info
                         const planeInfo: Partial<PlaneInfo> = {
                             fleetId,
-                            registration,
-                            detailPageUrl
+                            registration
                         };
 
                         // ✅ Konfigurierbare Detail-Extraktion
@@ -149,8 +219,8 @@ export class FetchPlanesUtils {
                         const SKIP_DETAILS = !shouldFetchDetails;
 
                         // Open detail page if link is available
-                        if (detailPageUrl && detailLinkExists && !SKIP_DETAILS) {
-                            console.log(`Opening detail page for plane ${registration || fleetId || 'unknown'}: ${detailPageUrl}`);
+                        if (detailLinkExists && !SKIP_DETAILS) {
+                            console.log(`Opening detail page for plane ${registration || fleetId || 'unknown'}`);
 
                             // Click on the detail link to open the page (reuse detailLinkElement)
                             await detailLinkElement.click();
@@ -170,33 +240,35 @@ export class FetchPlanesUtils {
                             // Extract data if container is visible
                             if (await detailContainer.isVisible()) {
                                 try {
-                                    // Extract aircraft type
-                                    const aircraftType = await this.getTextFromDivLabel(detailContainer, 'Aircraft:');
+                                    // Extract aircraft type (NO COLON!)
+                                    const aircraftType = await this.getDetailValue(detailContainer, 'Aircraft');
                                     planeInfo.aircraftType = aircraftType;
-                                    
-                                    // Extract delivered date
-                                    const delivered = await this.getTextFromDivLabel(detailContainer, 'Delivered:');
+
+                                    // Extract delivered date (NO COLON!)
+                                    const delivered = await this.getDetailValue(detailContainer, 'Delivered');
                                     planeInfo.delivered = delivered;
-                                    
-                                    // Extract hours to check
-                                    const hoursToCheck = await this.getTextFromDivLabel(detailContainer, 'Hours to check:');
-                                    planeInfo.hoursToCheck = hoursToCheck;
-                                    
-                                    // Extract range
-                                    const range = await this.getTextFromDivLabel(detailContainer, 'Range:');
-                                    planeInfo.range = range;
-                                    
-                                    // Extract flight hours/cycles
-                                    const flightHoursCycles = await this.getTextFromDivLabel(detailContainer, 'Flight hours/cycles:');
-                                    planeInfo.flightHoursCycles = flightHoursCycles;
-                                    
-                                    // Extract min runway
-                                    const minRunway = await this.getTextFromDivLabel(detailContainer, 'Min. runway:');
-                                    planeInfo.minRunway = minRunway;
-                                    
-                                    // Extract wear
-                                    const wear = await this.getTextFromDivLabel(detailContainer, 'Wear:');
-                                    planeInfo.wear = wear;
+
+                                    // Extract hours to check (NO COLON!) - Parse to number
+                                    const hoursToCheckStr = await this.getDetailValue(detailContainer, 'Hours to check');
+                                    planeInfo.hoursToCheck = this.parseNumber(hoursToCheckStr);
+
+                                    // Extract range (NO COLON!) - Parse to km number
+                                    const rangeStr = await this.getDetailValue(detailContainer, 'Range');
+                                    planeInfo.rangeKm = this.parseRangeKm(rangeStr);
+
+                                    // Extract flight hours/cycles (NO COLON!) - Parse to separate numbers
+                                    const flightHoursCyclesStr = await this.getDetailValue(detailContainer, 'Flight hours/Cycles');
+                                    const parsedHoursCycles = this.parseFlightHoursCycles(flightHoursCyclesStr);
+                                    planeInfo.flightHours = parsedHoursCycles.hours;
+                                    planeInfo.flightCycles = parsedHoursCycles.cycles;
+
+                                    // Extract min runway (NO COLON!) - Parse to ft number
+                                    const minRunwayStr = await this.getDetailValue(detailContainer, 'Min runway');
+                                    planeInfo.minRunwayFt = this.parseRunwayFt(minRunwayStr);
+
+                                    // Extract wear (NO COLON!) - Parse to percent number
+                                    const wearStr = await this.getDetailValue(detailContainer, 'Wear');
+                                    planeInfo.wearPercent = this.parsePercent(wearStr);
 
                                     // ✅ NEU: Extract flight history
                                     const flightHistory: FlightHistory[] = [];
@@ -323,47 +395,6 @@ export class FetchPlanesUtils {
     }
 
     // Added methods from 04_fleet.utils.ts
-    private async getTextFromDivLabel(container: Locator, labelWithColon: string, timeout = 7000): Promise<string | null> {
-        try {
-            const labelHostingDivLocator = container.locator('div').filter({ hasText: labelWithColon }).first();
-            // ✅ FIX: Verwende count() statt expect().toBeVisible()
-            if (await labelHostingDivLocator.count() === 0) {
-                return null;
-            }
-            let textContent = await labelHostingDivLocator.textContent();
-            if (textContent) {
-                const escapedLabel = labelWithColon.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&');
-                const regex = new RegExp(escapedLabel + "\\s*(.+)", "i");
-                const match = textContent.match(regex);
-                if (match && match[1]) {
-                    return match[1].trim();
-                }
-            }
-            const nextDivSiblingLocator = labelHostingDivLocator.locator('xpath=./following-sibling::div[1]');
-            if (await nextDivSiblingLocator.count() > 0) {
-                const siblingTextContent = await nextDivSiblingLocator.textContent();
-                if (siblingTextContent) {
-                    return siblingTextContent.trim();
-                }
-            }
-            const strongLabelInDiv = labelHostingDivLocator.locator(`strong:has-text("${labelWithColon}")`);
-            if(await strongLabelInDiv.count() > 0) {
-                const parentDivText = await labelHostingDivLocator.textContent();
-                if (parentDivText) {
-                    const escapedLabel = labelWithColon.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&');
-                    const regex = new RegExp(escapedLabel + "\\s*(.+)", "i");
-                    const match = parentDivText.match(regex);
-                    if (match && match[1]) {
-                        return match[1].trim();
-                    }
-                }
-            }
-            return null;
-        } catch (e) {
-            return null;
-        }
-    }
-
     private async extractDetailFromContainer(detailsContainer: Locator, identifier: string): Promise<Partial<PlaneInfo>> {
         const details: Partial<PlaneInfo> = {};
         try {
