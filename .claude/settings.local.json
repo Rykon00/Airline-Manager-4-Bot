@@ -38,7 +38,9 @@
       "mcp__kapture__new_tab",
       "mcp__kapture__navigate",
       "Bash(npx tsc:*)",
-      "mcp__ide__getDiagnostics"
+      "mcp__ide__getDiagnostics",
+      "Bash(data.gitkeep)",
+      "Bash(screenshots.gitkeep)"
     ],
     "deny": [],
     "ask": []
