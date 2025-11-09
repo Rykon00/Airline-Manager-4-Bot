@@ -6,7 +6,6 @@
  */
 export interface FlightHistoryEntry {
     timestamp: string;                      // ISO-8601 absolute timestamp
-    timeAgoOriginal: string;                // Original "5 hours ago" text
     precisionLevel: 'slot' | 'day' | 'week' | 'month' | 'year';  // Precision of timestamp
     route: string;                          // e.g., "ELQ-FRA"
     routeName: string | null;               // e.g., "L-0008" (route management name)

@@ -150,6 +150,33 @@ export class TimestampUtils {
     }
 
     /**
+     * Normalizes a timestamp to UTC timeslot (30-minute slots: :00 or :30)
+     * Only normalizes flights with 'slot' precision (seconds/minutes/hours)
+     * Other precision levels (day/week/month/year) remain unchanged
+     *
+     * This ensures consistency with price-history.json timeslots
+     *
+     * @param timestamp - ISO-8601 timestamp string
+     * @param precisionLevel - The precision level of the timestamp
+     * @returns Normalized timestamp (or original if not 'slot' precision)
+     */
+    public static normalizeToTimeslot(timestamp: string, precisionLevel: PrecisionLevel): string {
+        // Only normalize 'slot' precision (accurate to seconds/minutes/hours)
+        if (precisionLevel !== 'slot') {
+            return timestamp; // Return unchanged for day/week/month/year
+        }
+
+        const date = new Date(timestamp);
+        const utcMinutes = date.getUTCMinutes();
+
+        // Round to :00 or :30
+        const roundedMinutes = utcMinutes < 30 ? 0 : 30;
+
+        date.setUTCMinutes(roundedMinutes, 0, 0); // Set minutes, seconds, milliseconds
+        return date.toISOString();
+    }
+
+    /**
      * Checks if a timestamp is newer than another
      * @param timestamp1 - ISO-8601 timestamp
      * @param timestamp2 - ISO-8601 timestamp

@@ -987,9 +987,14 @@ export class SmartFleetUtils {
                 const first = fMatch ? parseInt(fMatch[1]) : null;
                 const total = (economy || 0) + (business || 0) + (first || 0);
 
+                // Normalize timestamp to UTC timeslot (for 'slot' precision only)
+                const normalizedTimestamp = TimestampUtils.normalizeToTimeslot(
+                    converted.timestamp,
+                    converted.precisionLevel
+                );
+
                 flightHistory.push({
-                    timestamp: converted.timestamp,
-                    timeAgoOriginal: converted.original,
+                    timestamp: normalizedTimestamp,
                     precisionLevel: converted.precisionLevel,
                     route: route || '',
                     routeName,
@@ -1174,11 +1179,82 @@ export class SmartFleetUtils {
                 const oldFlights = mergedData[existingIndex].flightHistory;
                 const newFlights = newPlane.flightHistory;
 
-                // Combine and deduplicate by timestamp
-                const allFlights = [...newFlights, ...oldFlights];
-                const uniqueFlights = Array.from(
-                    new Map(allFlights.map(f => [f.timestamp, f])).values()
+                // Helper: Semantic deduplication - checks if two flights are the same
+                // Based on: route, revenue, passengers, and timestamp proximity (within 1 hour)
+                const areSameFlight = (f1: any, f2: any): boolean => {
+                    // Must have same route and revenue
+                    if (f1.route !== f2.route || f1.revenueUSD !== f2.revenueUSD) {
+                        return false;
+                    }
+
+                    // Must have same passengers
+                    const passengersSame =
+                        f1.passengers.total === f2.passengers.total &&
+                        f1.passengers.economy === f2.passengers.economy &&
+                        f1.passengers.business === f2.passengers.business &&
+                        f1.passengers.first === f2.passengers.first;
+
+                    if (!passengersSame) {
+                        return false;
+                    }
+
+                    // Must be within 1 hour time window
+                    const time1 = new Date(f1.timestamp).getTime();
+                    const time2 = new Date(f2.timestamp).getTime();
+                    const diffMinutes = Math.abs(time1 - time2) / (1000 * 60);
+
+                    return diffMinutes <= 60;
+                };
+
+                // Helper: Choose better flight when duplicates detected
+                // Prefer: slot > day > week > month > year precision
+                const precisionRank = { slot: 5, day: 4, week: 3, month: 2, year: 1 };
+                const chooseBetterFlight = (f1: any, f2: any): any => {
+                    const rank1 = precisionRank[f1.precisionLevel as keyof typeof precisionRank] || 0;
+                    const rank2 = precisionRank[f2.precisionLevel as keyof typeof precisionRank] || 0;
+
+                    // If same precision, prefer newer timestamp
+                    if (rank1 === rank2) {
+                        const time1 = new Date(f1.timestamp).getTime();
+                        const time2 = new Date(f2.timestamp).getTime();
+                        return time1 > time2 ? f1 : f2;
+                    }
+
+                    return rank1 > rank2 ? f1 : f2;
+                };
+
+                // Filter out flights that already exist (semantic deduplication)
+                const newUniqueFlights = newFlights.filter(nf =>
+                    !oldFlights.some(of => areSameFlight(of, nf))
                 );
+
+                // Combine new unique flights with old flights
+                const allFlights = [...newUniqueFlights, ...oldFlights];
+
+                // Additional deduplication: Remove any remaining duplicates and keep best version
+                const deduplicatedFlights: any[] = [];
+                const processed = new Set<number>();
+
+                for (let i = 0; i < allFlights.length; i++) {
+                    if (processed.has(i)) continue;
+
+                    let bestFlight = allFlights[i];
+                    processed.add(i);
+
+                    // Find all duplicates of this flight
+                    for (let j = i + 1; j < allFlights.length; j++) {
+                        if (processed.has(j)) continue;
+
+                        if (areSameFlight(allFlights[i], allFlights[j])) {
+                            bestFlight = chooseBetterFlight(bestFlight, allFlights[j]);
+                            processed.add(j);
+                        }
+                    }
+
+                    deduplicatedFlights.push(bestFlight);
+                }
+
+                const uniqueFlights = deduplicatedFlights;
 
                 // Sort by timestamp descending (newest first)
                 uniqueFlights.sort((a, b) =>
