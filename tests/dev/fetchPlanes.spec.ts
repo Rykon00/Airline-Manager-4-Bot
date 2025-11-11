@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
-import { GeneralUtils } from '../utils/00_general.utils';
-import { FetchPlanesUtils } from '../utils/fleet/fetchPlanes.utils';
+import { GeneralUtils } from '../../utils/00_general.utils';
+import { FetchPlanesUtils } from '../../utils/04_fleet.utils';
 import * as fs from 'fs';
 
 require('dotenv').config();
@@ -19,14 +19,17 @@ test('Fetch All Planes', async ({ page }) => {
   // Fetch all planes and write to JSON
   try {
     console.log('Starting to fetch all planes...');
-    const planes = await fetchPlanesUtils.getAllPlanes();
+    // Parameter: maxDetailsToFetch
+    // - 5 (default): Ersten 5 Flugzeuge mit Details + Flughistorie
+    // - 0: ALLE Flugzeuge mit Details (langsam! ~1-2 Min)
+    // - -1: NUR Basis-Daten ohne Details (schnell! ~20 Sek)
+    const planes = await fetchPlanesUtils.getAllPlanes(5); // ← Standard: 5 Flugzeuge mit Details
     console.log(`Successfully fetched ${planes.length} planes`);
     
     // Write data to JSON file
-    fs.writeFileSync('planes.json', JSON.stringify(planes, null, 2));
-    console.log('Planes data written to planes.json');
-      // fs.writeFileSync('planes.json', JSON.stringify(planes, null, 2));
-    // console.log('Planes data written to planes.json');
+    fs.mkdirSync('data', { recursive: true });
+    fs.writeFileSync('data/planes.json', JSON.stringify(planes, null, 2));
+    console.log('Planes data written to data/planes.json');
     
     // Optional: Write timestamped version for history
     // const timestamp = new Date().toISOString().replace(/[:.]/g, '-');

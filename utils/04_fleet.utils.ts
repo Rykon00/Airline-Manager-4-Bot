@@ -1,56 +1,24 @@
-import { Page, Locator, expect } from "@playwright/test"; // Added expect
-import { GeneralUtils } from './00_general.utils'; // Ensured GeneralUtils import
-import { FetchPlanesUtils } from './fleet/fetchPlanes.utils';
-require('dotenv').config();
+/**
+ * Fleet Utils - Central Facade/Proxy for all Fleet Operations
+ *
+ * This file serves as the central entry point for all fleet-related utilities.
+ * Implementation details are organized in the ./fleet/ subdirectory.
+ *
+ * Usage:
+ *   import { SmartFleetUtils } from '../utils/04_fleet.utils';
+ *
+ * Benefits:
+ *   - Maintains chronological numbering (00-05) matching script execution order
+ *   - Single import point for all fleet operations
+ *   - Implementation details cleanly organized in subdirectory
+ *   - Easy to extend with new fleet features
+ */
 
-// Define the PlaneInfo interface
-interface PlaneInfo {
-    planeId: string | null;
-    detailPageUrl: string | null;
-    rawRouteText: string | null;
-    aircraftType: string | null;
-    delivered: string | null;
-    hoursToCheck: string | null;
-    range: string | null;
-    flightHoursCycles: string | null;
-    minRunway: string | null;
-    wear: string | null;
-    planeType: string | null; 
-    departureAirport: string | null;
-    arrivalAirport: string | null;
-    error?: string;
-}
+// Re-export all fleet-related utilities
+export { SmartFleetUtils } from './fleet/smartFleetUtils';
+export { FetchPlanesUtils } from './fleet/fetchPlanes.utils';
+export { UpdatePlanesUtils } from './fleet/updatePlanes.utils';
 
-export class FleetUtils {
-    page : Page;
-    maxTry : number; // Added to prevent infinite loop in case of no fuel available
-
-    constructor(page : Page) {
-        this.page = page;
-        this.maxTry = 8; // TODO: Find another way 
-    }
-
-    public async departPlanes() {
-        let departAllVisible = await this.page.locator('#departAll').isVisible();
-        console.log('Looking if there are any planes to be departed...')
-
-        let count = 0; 
-        while(departAllVisible && count < this.maxTry) {
-            console.log('Departing 20 or less...');
-
-            let departAll = await this.page.locator('#departAll');
-            
-            await departAll.click();
-            await GeneralUtils.sleep(1500);
-            
-            const cantDepartPlane = await this.page.getByText('×Unable to departSome A/C was').isVisible();
-            if(cantDepartPlane)
-                break;
-
-            departAllVisible = await this.page.locator('#departAll').isVisible();
-            count++;
-        
-            console.log('Departed 20 or less planes...')
-        }
-    }
-}
+// Re-export types and utilities
+export * from './fleet/fleetTypes';
+export * from './fleet/timestampUtils';

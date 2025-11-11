@@ -4,5 +4,20 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 .env
+
+# Data directory - all generated data files (keep directories, ignore contents)
+/data/*
+!/data/.gitkeep
+/screenshots/*
+!/screenshots/.gitkeep
+
+# Legacy files (if any still exist in root)
 cookies.json
 planes.json
+price-history.json
+
+# Log files
+*.log
+
+# Claude Code project settings
+.claude/

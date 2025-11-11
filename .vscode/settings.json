@@ -1,0 +1,26 @@
+{
+  // TypeScript - Use workspace version
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+
+  // File Explorer - Hide project-specific folders
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/.git": false,
+    "**/test-results": true,
+    "**/playwright-report": true,
+    "**/.serena": false
+  },
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/test-results/**": true,
+    "**/playwright-report/**": true
+  },
+
+  // Search - Exclude project-specific folders
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/test-results": true,
+    "**/playwright-report": true
+  }
+}
